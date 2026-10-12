@@ -1,0 +1,652 @@
+{
+  "versao_formato": "1.0",
+  "ferramenta": {
+    "nome": "Endpoint Investigator",
+    "versao": "1.0.0"
+  },
+  "analisado_em": "2026-09-29T18:57:47+00:00",
+  "tipo_coleta": "dataset",
+  "fontes": [
+    {
+      "arquivo": "processes.csv",
+      "sha256": "88c13c507a8fc66969a9214ef41b1a430b6184c50f0562a63f77283c21938384",
+      "bytes": 378
+    },
+    {
+      "arquivo": "permissions.csv",
+      "sha256": "65f5c9675ee1fc20f1e0267abdc6f129b15edd4bf2fd8c02be28f1bd703d025b",
+      "bytes": 239
+    },
+    {
+      "arquivo": "services.txt",
+      "sha256": "993ecfa8b562932583905d1721ec10cc976e03b9af7f8094071cfd07a4ce9285",
+      "bytes": 267
+    },
+    {
+      "arquivo": "journal.log",
+      "sha256": "3ee48c169e717e565f7839a25c69b23f05ba7f76edb167720b7ae29785e1243f",
+      "bytes": 497
+    }
+  ],
+  "evidencias": [
+    {
+      "id": "P0001",
+      "tipo": "processo",
+      "origem": {
+        "arquivo": "processes.csv",
+        "linha": 2
+      },
+      "bruto": "2026-09-14T09:00:00+00:00,1,0,root,Ss,/sbin/init",
+      "dados": {
+        "timestamp": "2026-09-14T09:00:00+00:00",
+        "pid": 1,
+        "ppid": 0,
+        "user": "root",
+        "stat": "Ss",
+        "cmd": "/sbin/init",
+        "argv": [
+          "/sbin/init"
+        ]
+      }
+    },
+    {
+      "id": "P0002",
+      "tipo": "processo",
+      "origem": {
+        "arquivo": "processes.csv",
+        "linha": 3
+      },
+      "bruto": "2026-09-14T09:00:02+00:00,612,1,root,Ss,/usr/sbin/sshd -D",
+      "dados": {
+        "timestamp": "2026-09-14T09:00:02+00:00",
+        "pid": 612,
+        "ppid": 1,
+        "user": "root",
+        "stat": "Ss",
+        "cmd": "/usr/sbin/sshd -D",
+        "argv": [
+          "/usr/sbin/sshd",
+          "-D"
+        ]
+      }
+    },
+    {
+      "id": "P0003",
+      "tipo": "processo",
+      "origem": {
+        "arquivo": "processes.csv",
+        "linha": 4
+      },
+      "bruto": "2026-09-14T09:00:04+00:00,821,1,root,Ss,/usr/sbin/cron -f",
+      "dados": {
+        "timestamp": "2026-09-14T09:00:04+00:00",
+        "pid": 821,
+        "ppid": 1,
+        "user": "root",
+        "stat": "Ss",
+        "cmd": "/usr/sbin/cron -f",
+        "argv": [
+          "/usr/sbin/cron",
+          "-f"
+        ]
+      }
+    },
+    {
+      "id": "P0004",
+      "tipo": "processo",
+      "origem": {
+        "arquivo": "processes.csv",
+        "linha": 5
+      },
+      "bruto": "2026-09-14T09:00:06+00:00,2417,1,root,Ss,/bin/bash /opt/backup/backup.sh",
+      "dados": {
+        "timestamp": "2026-09-14T09:00:06+00:00",
+        "pid": 2417,
+        "ppid": 1,
+        "user": "root",
+        "stat": "Ss",
+        "cmd": "/bin/bash /opt/backup/backup.sh",
+        "argv": [
+          "/bin/bash",
+          "/opt/backup/backup.sh"
+        ]
+      }
+    },
+    {
+      "id": "P0005",
+      "tipo": "processo",
+      "origem": {
+        "arquivo": "processes.csv",
+        "linha": 6
+      },
+      "bruto": "2026-09-14T09:00:08+00:00,2421,2417,root,S,/usr/bin/curl -fsS https://updates.example.invalid/status",
+      "dados": {
+        "timestamp": "2026-09-14T09:00:08+00:00",
+        "pid": 2421,
+        "ppid": 2417,
+        "user": "root",
+        "stat": "S",
+        "cmd": "/usr/bin/curl -fsS https://updates.example.invalid/status",
+        "argv": [
+          "/usr/bin/curl",
+          "-fsS",
+          "https://updates.example.invalid/status"
+        ]
+      }
+    },
+    {
+      "id": "A0001",
+      "tipo": "permissao",
+      "origem": {
+        "arquivo": "permissions.csv",
+        "linha": 2
+      },
+      "bruto": "/opt/backup,directory,root,root,0755,2026-09-14T09:00:00+00:00",
+      "dados": {
+        "path": "/opt/backup",
+        "type": "directory",
+        "owner": "root",
+        "group": "root",
+        "mode": "0755",
+        "mtime": "2026-09-14T09:00:00+00:00"
+      }
+    },
+    {
+      "id": "A0002",
+      "tipo": "permissao",
+      "origem": {
+        "arquivo": "permissions.csv",
+        "linha": 3
+      },
+      "bruto": "/opt/backup/backup.sh,file,root,root,0700,2026-09-13T08:59:00+00:00",
+      "dados": {
+        "path": "/opt/backup/backup.sh",
+        "type": "file",
+        "owner": "root",
+        "group": "root",
+        "mode": "0700",
+        "mtime": "2026-09-13T08:59:00+00:00"
+      }
+    },
+    {
+      "id": "A0003",
+      "tipo": "permissao",
+      "origem": {
+        "arquivo": "permissions.csv",
+        "linha": 4
+      },
+      "bruto": "/opt/backup/config.ini,file,root,backup,0640,2026-09-12T08:58:00+00:00",
+      "dados": {
+        "path": "/opt/backup/config.ini",
+        "type": "file",
+        "owner": "root",
+        "group": "backup",
+        "mode": "0640",
+        "mtime": "2026-09-12T08:58:00+00:00"
+      }
+    },
+    {
+      "id": "S0001",
+      "tipo": "servico",
+      "origem": {
+        "arquivo": "services.txt",
+        "linha": 2
+      },
+      "bruto": "ssh.service                 running  root      /usr/sbin/sshd -D",
+      "dados": {
+        "unit": "ssh.service",
+        "active": "running",
+        "user": "root",
+        "execstart": "/usr/sbin/sshd -D",
+        "argv": [
+          "/usr/sbin/sshd",
+          "-D"
+        ]
+      }
+    },
+    {
+      "id": "S0002",
+      "tipo": "servico",
+      "origem": {
+        "arquivo": "services.txt",
+        "linha": 3
+      },
+      "bruto": "cron.service                running  root      /usr/sbin/cron -f",
+      "dados": {
+        "unit": "cron.service",
+        "active": "running",
+        "user": "root",
+        "execstart": "/usr/sbin/cron -f",
+        "argv": [
+          "/usr/sbin/cron",
+          "-f"
+        ]
+      }
+    },
+    {
+      "id": "S0003",
+      "tipo": "servico",
+      "origem": {
+        "arquivo": "services.txt",
+        "linha": 4
+      },
+      "bruto": "backup-agent.service        running  root      /bin/bash /opt/backup/backup.sh",
+      "dados": {
+        "unit": "backup-agent.service",
+        "active": "running",
+        "user": "root",
+        "execstart": "/bin/bash /opt/backup/backup.sh",
+        "argv": [
+          "/bin/bash",
+          "/opt/backup/backup.sh"
+        ]
+      }
+    },
+    {
+      "id": "L0001",
+      "tipo": "log",
+      "origem": {
+        "arquivo": "journal.log",
+        "linha": 1
+      },
+      "bruto": "Sep 14 09:00:00 srv-app-01 systemd[1]: Started ssh.service - OpenBSD Secure Shell server.",
+      "dados": {
+        "mensagem": "Started ssh.service - OpenBSD Secure Shell server.",
+        "timestamp": "Sep 14 09:00:00",
+        "pid": 1,
+        "tag": "systemd",
+        "host": "srv-app-01",
+        "precisao_temporal": "ano_e_fuso_ausentes"
+      }
+    },
+    {
+      "id": "L0002",
+      "tipo": "log",
+      "origem": {
+        "arquivo": "journal.log",
+        "linha": 2
+      },
+      "bruto": "Sep 14 09:01:00 srv-app-01 systemd[1]: Starting backup-agent.service - Internal Backup Agent...",
+      "dados": {
+        "mensagem": "Starting backup-agent.service - Internal Backup Agent...",
+        "timestamp": "Sep 14 09:01:00",
+        "pid": 1,
+        "tag": "systemd",
+        "host": "srv-app-01",
+        "precisao_temporal": "ano_e_fuso_ausentes"
+      }
+    },
+    {
+      "id": "L0003",
+      "tipo": "log",
+      "origem": {
+        "arquivo": "journal.log",
+        "linha": 3
+      },
+      "bruto": "Sep 14 09:01:03 srv-app-01 backup-agent[2417]: backup job started",
+      "dados": {
+        "mensagem": "backup job started",
+        "timestamp": "Sep 14 09:01:03",
+        "pid": 2417,
+        "tag": "backup-agent",
+        "host": "srv-app-01",
+        "precisao_temporal": "ano_e_fuso_ausentes"
+      }
+    },
+    {
+      "id": "L0004",
+      "tipo": "log",
+      "origem": {
+        "arquivo": "journal.log",
+        "linha": 4
+      },
+      "bruto": "Sep 14 09:01:04 srv-app-01 backup-agent[2417]: checking remote status endpoint",
+      "dados": {
+        "mensagem": "checking remote status endpoint",
+        "timestamp": "Sep 14 09:01:04",
+        "pid": 2417,
+        "tag": "backup-agent",
+        "host": "srv-app-01",
+        "precisao_temporal": "ano_e_fuso_ausentes"
+      }
+    },
+    {
+      "id": "L0005",
+      "tipo": "log",
+      "origem": {
+        "arquivo": "journal.log",
+        "linha": 5
+      },
+      "bruto": "Sep 14 09:01:05 srv-app-01 backup-agent[2417]: backup completed with status=OK",
+      "dados": {
+        "mensagem": "backup completed with status=OK",
+        "timestamp": "Sep 14 09:01:05",
+        "pid": 2417,
+        "tag": "backup-agent",
+        "host": "srv-app-01",
+        "precisao_temporal": "ano_e_fuso_ausentes"
+      }
+    },
+    {
+      "id": "L0006",
+      "tipo": "log",
+      "origem": {
+        "arquivo": "journal.log",
+        "linha": 6
+      },
+      "bruto": "Sep 14 09:01:06 srv-app-01 systemd[1]: backup-agent.service: Deactivated successfully.",
+      "dados": {
+        "mensagem": "backup-agent.service: Deactivated successfully.",
+        "timestamp": "Sep 14 09:01:06",
+        "pid": 1,
+        "tag": "systemd",
+        "host": "srv-app-01",
+        "precisao_temporal": "ano_e_fuso_ausentes"
+      }
+    }
+  ],
+  "relacoes": [
+    {
+      "id": "C0001",
+      "tipo": "processo_pai",
+      "de": "P0002",
+      "para": "P0001",
+      "metodo": "PPID do filho = PID do pai no snapshot",
+      "confianca": "moderada",
+      "limitacao": "Não demonstra qual identidade foi usada no instante de criação."
+    },
+    {
+      "id": "C0002",
+      "tipo": "processo_pai",
+      "de": "P0003",
+      "para": "P0001",
+      "metodo": "PPID do filho = PID do pai no snapshot",
+      "confianca": "moderada",
+      "limitacao": "Não demonstra qual identidade foi usada no instante de criação."
+    },
+    {
+      "id": "C0003",
+      "tipo": "processo_pai",
+      "de": "P0004",
+      "para": "P0001",
+      "metodo": "PPID do filho = PID do pai no snapshot",
+      "confianca": "moderada",
+      "limitacao": "Não demonstra qual identidade foi usada no instante de criação."
+    },
+    {
+      "id": "C0004",
+      "tipo": "processo_codigo",
+      "de": "P0004",
+      "para": "A0002",
+      "metodo": "Caminho absoluto em posição de executável/script",
+      "confianca": "moderada",
+      "limitacao": "O conteúdo do arquivo não foi observado durante a execução."
+    },
+    {
+      "id": "C0005",
+      "tipo": "processo_pai",
+      "de": "P0005",
+      "para": "P0004",
+      "metodo": "PPID do filho = PID do pai no snapshot",
+      "confianca": "moderada",
+      "limitacao": "Não demonstra qual identidade foi usada no instante de criação."
+    },
+    {
+      "id": "C0006",
+      "tipo": "servico_processo",
+      "de": "S0001",
+      "para": "P0002",
+      "metodo": "argv completo e usuário iguais; associação candidata",
+      "confianca": "moderada",
+      "limitacao": "Associação atual não autentica eventos históricos; argv idêntico pode ocorrer em instâncias distintas."
+    },
+    {
+      "id": "C0007",
+      "tipo": "servico_log",
+      "de": "S0001",
+      "para": "L0001",
+      "metodo": "Unidade explícita ou tag correspondente ao nome completo do serviço",
+      "confianca": "moderada",
+      "limitacao": "Tag textual pode ser falsificada; logs podem estar incompletos."
+    },
+    {
+      "id": "C0008",
+      "tipo": "servico_processo",
+      "de": "S0002",
+      "para": "P0003",
+      "metodo": "argv completo e usuário iguais; associação candidata",
+      "confianca": "moderada",
+      "limitacao": "Associação atual não autentica eventos históricos; argv idêntico pode ocorrer em instâncias distintas."
+    },
+    {
+      "id": "C0009",
+      "tipo": "servico_processo",
+      "de": "S0003",
+      "para": "P0004",
+      "metodo": "argv completo e usuário iguais; associação candidata",
+      "confianca": "moderada",
+      "limitacao": "Associação atual não autentica eventos históricos; argv idêntico pode ocorrer em instâncias distintas."
+    },
+    {
+      "id": "C0010",
+      "tipo": "servico_codigo",
+      "de": "S0003",
+      "para": "A0002",
+      "metodo": "Código referenciado pelo ExecStart ou por processo associado",
+      "confianca": "moderada",
+      "limitacao": "Dependências carregadas indiretamente não são enumeradas."
+    },
+    {
+      "id": "C0011",
+      "tipo": "servico_log",
+      "de": "S0003",
+      "para": "L0002",
+      "metodo": "Unidade explícita ou tag correspondente ao nome completo do serviço",
+      "confianca": "moderada",
+      "limitacao": "Tag textual pode ser falsificada; logs podem estar incompletos."
+    },
+    {
+      "id": "C0012",
+      "tipo": "servico_log",
+      "de": "S0003",
+      "para": "L0003",
+      "metodo": "Unidade explícita ou tag correspondente ao nome completo do serviço",
+      "confianca": "moderada",
+      "limitacao": "Tag textual pode ser falsificada; logs podem estar incompletos."
+    },
+    {
+      "id": "C0013",
+      "tipo": "servico_log",
+      "de": "S0003",
+      "para": "L0004",
+      "metodo": "Unidade explícita ou tag correspondente ao nome completo do serviço",
+      "confianca": "moderada",
+      "limitacao": "Tag textual pode ser falsificada; logs podem estar incompletos."
+    },
+    {
+      "id": "C0014",
+      "tipo": "servico_log",
+      "de": "S0003",
+      "para": "L0005",
+      "metodo": "Unidade explícita ou tag correspondente ao nome completo do serviço",
+      "confianca": "moderada",
+      "limitacao": "Tag textual pode ser falsificada; logs podem estar incompletos."
+    },
+    {
+      "id": "C0015",
+      "tipo": "servico_log",
+      "de": "S0003",
+      "para": "L0006",
+      "metodo": "Unidade explícita ou tag correspondente ao nome completo do serviço",
+      "confianca": "moderada",
+      "limitacao": "Tag textual pode ser falsificada; logs podem estar incompletos."
+    },
+    {
+      "id": "C0016",
+      "tipo": "processo_log",
+      "de": "P0001",
+      "para": "L0001",
+      "metodo": "PID numérico comum",
+      "confianca": "baixa",
+      "limitacao": "O PID pode ter sido reaproveitado por outro processo depois do evento registrado."
+    },
+    {
+      "id": "C0017",
+      "tipo": "processo_log",
+      "de": "P0001",
+      "para": "L0002",
+      "metodo": "PID numérico comum",
+      "confianca": "baixa",
+      "limitacao": "O PID pode ter sido reaproveitado por outro processo depois do evento registrado."
+    },
+    {
+      "id": "C0018",
+      "tipo": "processo_log",
+      "de": "P0004",
+      "para": "L0003",
+      "metodo": "PID numérico comum",
+      "confianca": "baixa",
+      "limitacao": "O PID pode ter sido reaproveitado por outro processo depois do evento registrado."
+    },
+    {
+      "id": "C0019",
+      "tipo": "processo_log",
+      "de": "P0004",
+      "para": "L0004",
+      "metodo": "PID numérico comum",
+      "confianca": "baixa",
+      "limitacao": "O PID pode ter sido reaproveitado por outro processo depois do evento registrado."
+    },
+    {
+      "id": "C0020",
+      "tipo": "processo_log",
+      "de": "P0004",
+      "para": "L0005",
+      "metodo": "PID numérico comum",
+      "confianca": "baixa",
+      "limitacao": "O PID pode ter sido reaproveitado por outro processo depois do evento registrado."
+    },
+    {
+      "id": "C0021",
+      "tipo": "processo_log",
+      "de": "P0001",
+      "para": "L0006",
+      "metodo": "PID numérico comum",
+      "confianca": "baixa",
+      "limitacao": "O PID pode ter sido reaproveitado por outro processo depois do evento registrado."
+    }
+  ],
+  "contextos_de_servicos": [
+    {
+      "servico": "S0001",
+      "processos_candidatos": [
+        "P0002"
+      ],
+      "alvos_de_codigo": [
+        "/usr/sbin/sshd"
+      ],
+      "alvos_sem_metadados": [
+        "/usr/sbin/sshd"
+      ],
+      "eventos_na_ordem_da_fonte": [
+        "L0001"
+      ],
+      "nota": "Lista de eventos da fonte; não estabelece causalidade nem uma cronologia absoluta."
+    },
+    {
+      "servico": "S0002",
+      "processos_candidatos": [
+        "P0003"
+      ],
+      "alvos_de_codigo": [
+        "/usr/sbin/cron"
+      ],
+      "alvos_sem_metadados": [
+        "/usr/sbin/cron"
+      ],
+      "eventos_na_ordem_da_fonte": [],
+      "nota": "Lista de eventos da fonte; não estabelece causalidade nem uma cronologia absoluta."
+    },
+    {
+      "servico": "S0003",
+      "processos_candidatos": [
+        "P0004"
+      ],
+      "alvos_de_codigo": [
+        "/bin/bash",
+        "/opt/backup/backup.sh"
+      ],
+      "alvos_sem_metadados": [
+        "/bin/bash"
+      ],
+      "eventos_na_ordem_da_fonte": [
+        "L0002",
+        "L0003",
+        "L0004",
+        "L0005",
+        "L0006"
+      ],
+      "nota": "Lista de eventos da fonte; não estabelece causalidade nem uma cronologia absoluta."
+    }
+  ],
+  "achados": [
+    {
+      "id": "F0001",
+      "regra": "R06",
+      "titulo": "URL em comando root no contexto de backup-agent.service",
+      "categoria": "informativo",
+      "prioridade": "informativa",
+      "evidencias": [
+        "S0003",
+        "P0004",
+        "P0005"
+      ],
+      "relacoes": [
+        "C0005",
+        "C0009"
+      ],
+      "observado": [
+        "PID 2421, PPID 2417, usuário root; URL(s): https://updates.example.invalid/status."
+      ],
+      "interpretacao": "O comando contém um destino HTTP(S). A ancestralidade relaciona o processo ao serviço.",
+      "hipotese": "Pode ser atualização, backup ou monitoramento. A linha de comando não prova conexão estabelecida nem envio de dados.",
+      "evidencias_ausentes": [
+        "Conexões abertas pelo processo (sockets em /proc/<PID>/fd), resolução DNS do destino e tráfego capturado."
+      ],
+      "proximos_passos": [
+        "Comparar o destino com a configuração do serviço e capturar o tráfego com tcpdump se necessário."
+      ],
+      "exploracao_comprovada": false
+    }
+  ],
+  "resumo": {
+    "evidencias": 17,
+    "relacoes": 21,
+    "achados": 1,
+    "por_prioridade": {
+      "alta": 0,
+      "media": 0,
+      "baixa": 0,
+      "informativa": 1
+    },
+    "por_tipo_de_evidencia": {
+      "processo": 5,
+      "permissao": 3,
+      "servico": 3,
+      "log": 6
+    },
+    "conclusao": "As regras não determinam ocorrência de exploração; os achados indicam verificações a realizar."
+  },
+  "avisos": [
+    "Datasets: USER é apenas o nome do usuário informado; UID/GID e grupos não foram fornecidos.",
+    "journal.log não informa ano/fuso: não é combinado com timestamps ISO como uma cronologia absoluta."
+  ],
+  "limitacoes": [
+    "A coleta é uma foto do momento: processos podem terminar ou ter o PID reaproveitado durante a coleta.",
+    "A análise usa as permissões rwx de dono, grupo e outros; outros controles de acesso do sistema não são considerados.",
+    "A linha de comando mostrada pelo ps não prova qual arquivo foi executado nem o conteúdo de um script.",
+    "Só são reconhecidos executáveis com caminho absoluto e scripts chamados diretamente (ex.: bash /opt/x.sh); bash -c e caminhos relativos não são resolvidos.",
+    "mtime é a data da última modificação, não da criação, e não prova alteração maliciosa. O hash identifica os arquivos analisados, não quem os produziu.",
+    "Nenhuma regra demonstra exploração. Ausência de achados não demonstra segurança."
+  ]
+}

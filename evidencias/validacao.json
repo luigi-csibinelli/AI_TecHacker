@@ -1,0 +1,19 @@
+{
+  "executado_em": "2026-09-29T18:57:48+00:00",
+  "python": "3.13.12",
+  "sistema": "Linux",
+  "testes": 32,
+  "falhas": 0,
+  "erros": 0,
+  "ignorados": 0,
+  "sucesso": true,
+  "smoke_test_coleta_local": {
+    "escopo": "Somente o PID 1 da saída do ps; sem leitura de journal.",
+    "processos": 1,
+    "permissoes": 3,
+    "servicos": 17,
+    "resultado_gerado": true,
+    "systemd_real_validado": true,
+    "nota": "O snapshot local bruto não é distribuído. Respostas de systemd/journal também são testadas com fixtures controladas."
+  }
+}

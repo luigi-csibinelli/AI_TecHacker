@@ -1,0 +1,208 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<title>Endpoint Investigator · Evidências</title><style>
+:root{font-family:system-ui,-apple-system,sans-serif;color:#192b3b;background:#edf1f4;line-height:1.6}
+*{box-sizing:border-box}body{margin:0;overflow-wrap:anywhere}main{max-width:1120px;margin:auto;padding:32px 24px 64px}
+header{background:#102b3f;color:#fff;padding:36px 28px;border-radius:12px}h1{font-size:32px;margin:0 0 10px}
+h2{margin-top:34px;font-size:24px}h3{font-size:19px;margin:6px 0 16px}h4{margin:20px 0 4px}
+p{margin:8px 0 14px}.eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#9fd4e4}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0}.metric,article,details,.box{background:white;border:1px solid #d6dfe5;border-radius:9px;padding:20px;margin:14px 0}
+.metric{margin:0}.metric strong{display:block;font-size:29px}.tag{display:inline-block;padding:2px 9px;background:#eaf0f4;border-radius:5px;font-size:13px}
+.alta{border-left:5px solid #ad3e30}.media{border-left:5px solid #aa7315}.informativa{border-left:5px solid #27748e}
+a{color:#126881}.ref{display:inline-block;padding:2px 7px;background:#edf6f9;border-radius:4px;margin:2px;font-family:monospace}
+code,pre{font-family:ui-monospace,monospace;font-size:12px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f1f5f7;padding:12px;border-radius:5px}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #dce4e9;padding:10px;overflow-wrap:anywhere}
+summary{cursor:pointer;font-weight:600}.small{font-size:13px;color:#536676}li{margin:5px 0}.scroll{overflow-x:auto}footer{margin-top:36px}
+@media(max-width:650px){.cards{grid-template-columns:1fr}main{padding:16px}h1{font-size:26px}th,td{min-width:100px}}
+@media print{body{background:white}main{padding:0}article{break-inside:avoid}header{color:#102b3f;background:white;border:1px solid #bbc9d2}.ref{color:#102b3f}details{break-inside:avoid}}
+</style></head><body><main><header><div class="eyebrow">Tecnologias Hackers · investigação de endpoint</div>
+<h1>Endpoint Investigator</h1><p>Evidência → relação → interpretação → hipótese</p><p>Origem: dataset · Análise: 2026-09-29T18:57:47+00:00</p></header><div class="cards"><div class="metric"><strong>21</strong>Evidências registradas</div><div class="metric"><strong>22</strong>Relações explícitas</div><div class="metric"><strong>3</strong>Achados para investigação</div></div><p class="box">As regras não determinam ocorrência de exploração; os achados indicam verificações a realizar.</p><nav><a href="#achados">Achados</a> · <a href="#contextos">Serviços e logs</a> · <a href="#relacoes">Relações</a> · <a href="#evidencias">Evidências</a> · <a href="#limites">Limitações</a></nav><h2 id="achados">Achados</h2><article id="F0001" class="alta"><span class="tag">F0001 / R01 · risco · prioridade alta</span><h3>Código modificável associado a backup-agent.service</h3><p><a class="ref" href="#S0003">S0003</a> <a class="ref" href="#P0004">P0004</a> <a class="ref" href="#A0002">A0002</a></p><h4>Observado</h4><ul><li>backup-agent.service: usuário declarado root; ExecStart=/bin/bash /opt/backup/backup.sh.</li><li>Processo associado observado com identidade root.</li><li>/opt/backup/backup.sh: proprietário root, modo 0777; bit de escrita para outros.</li></ul><h4>Interpretação</h4><p>O privilégio de execução está relacionado a um recurso de código cuja modificação merece verificação.</p><h4>Hipótese</h4><p>Se um usuário não privilegiado conseguir alterar esse recurso e o serviço o utilizar depois, poderá influenciar código executado como root.</p><h4>Evidências ausentes</h4><ul><li>Quem de fato consegue alterar o arquivo: integrantes do grupo e permissões de todos os diretórios do caminho.</li><li>Conteúdo do script e se ele foi alterado (comparar o hash SHA-256 com uma versão conhecida).</li><li>Logs que mostrem uma alteração não autorizada seguida de execução pelo serviço.</li></ul><h4>Próximos passos</h4><ul><li>Verificar as permissões de todos os diretórios do caminho (ls -ld).</li><li>Comparar o hash do script com uma versão aprovada e revisar o serviço (systemctl status).</li></ul><p class="small">Exploração comprovada: não. Relações: <a class="ref" href="#C0004">C0004</a> <a class="ref" href="#C0011">C0011</a> <a class="ref" href="#C0012">C0012</a></p></article><article id="F0002" class="informativa"><span class="tag">F0002 / R04 · informativo · prioridade informativa</span><h3>Arquivo root com bit SUID: /usr/local/bin/report-sync</h3><p><a class="ref" href="#A0004">A0004</a></p><h4>Observado</h4><ul><li>/usr/local/bin/report-sync: tipo file, proprietário root, grupo root, modo 4755.</li></ul><h4>Interpretação</h4><p>O bit SUID faz o programa executar com o usuário/grupo do dono, e não de quem o chamou.</p><h4>Hipótese</h4><p>Pode ser um utilitário legítimo (ex.: passwd, sudo) ou uma instalação que precise de revisão.</p><h4>Evidências ausentes</h4><ul><li>Finalidade do programa e se ele faz parte do sistema (comparar o hash SHA-256 com o do pacote original).</li><li>Logs de uso do programa por usuários comuns.</li></ul><h4>Próximos passos</h4><ul><li>Verificar o arquivo sem executá-lo e comparar com a lista de SUID/SGID esperados (find / -perm -4000).</li></ul><p class="small">Exploração comprovada: não. Relações: </p></article><article id="F0003" class="informativa"><span class="tag">F0003 / R06 · informativo · prioridade informativa</span><h3>URL em comando root no contexto de backup-agent.service</h3><p><a class="ref" href="#S0003">S0003</a> <a class="ref" href="#P0004">P0004</a> <a class="ref" href="#P0005">P0005</a></p><h4>Observado</h4><ul><li>PID 2421, PPID 2417, usuário root; URL(s): https://updates.example.invalid/status.</li></ul><h4>Interpretação</h4><p>O comando contém um destino HTTP(S). A ancestralidade relaciona o processo ao serviço.</p><h4>Hipótese</h4><p>Pode ser atualização, backup ou monitoramento. A linha de comando não prova conexão estabelecida nem envio de dados.</p><h4>Evidências ausentes</h4><ul><li>Conexões abertas pelo processo (sockets em /proc/&lt;PID&gt;/fd), resolução DNS do destino e tráfego capturado.</li></ul><h4>Próximos passos</h4><ul><li>Comparar o destino com a configuração do serviço e capturar o tráfego com tcpdump se necessário.</li></ul><p class="small">Exploração comprovada: não. Relações: <a class="ref" href="#C0005">C0005</a> <a class="ref" href="#C0011">C0011</a></p></article><h2 id="contextos">Serviços e eventos</h2><details><summary>Contexto S0001</summary><p>Serviço: <a class="ref" href="#S0001">S0001</a> · Processos candidatos: <a class="ref" href="#P0002">P0002</a></p><h4>Código referenciado</h4><ul><li>/usr/sbin/sshd</li></ul><h4>Sem metadados</h4><ul><li>/usr/sbin/sshd</li></ul><h4>Eventos na ordem da fonte</h4><p><a class="ref" href="#L0001">L0001</a></p><p class="small">Lista de eventos da fonte; não estabelece causalidade nem uma cronologia absoluta.</p></details><details><summary>Contexto S0002</summary><p>Serviço: <a class="ref" href="#S0002">S0002</a> · Processos candidatos: <a class="ref" href="#P0003">P0003</a></p><h4>Código referenciado</h4><ul><li>/usr/sbin/cron</li></ul><h4>Sem metadados</h4><ul><li>/usr/sbin/cron</li></ul><h4>Eventos na ordem da fonte</h4><p></p><p class="small">Lista de eventos da fonte; não estabelece causalidade nem uma cronologia absoluta.</p></details><details><summary>Contexto S0003</summary><p>Serviço: <a class="ref" href="#S0003">S0003</a> · Processos candidatos: <a class="ref" href="#P0004">P0004</a></p><h4>Código referenciado</h4><ul><li>/bin/bash</li><li>/opt/backup/backup.sh</li></ul><h4>Sem metadados</h4><ul><li>/bin/bash</li></ul><h4>Eventos na ordem da fonte</h4><p><a class="ref" href="#L0002">L0002</a> <a class="ref" href="#L0003">L0003</a> <a class="ref" href="#L0004">L0004</a> <a class="ref" href="#L0005">L0005</a></p><p class="small">Lista de eventos da fonte; não estabelece causalidade nem uma cronologia absoluta.</p></details><h2 id="relacoes">Relações</h2><div class="scroll"><table><thead><tr><th>ID</th><th>Relação</th><th>Origem / destino</th><th>Critério e limite</th></tr></thead><tbody><tr id="C0001"><td>C0001</td><td>processo_pai</td><td><a class="ref" href="#P0002">P0002</a> <a class="ref" href="#P0001">P0001</a></td><td>PPID do filho = PID do pai no snapshot<br><span class="small">Confiança da associação: moderada. Não demonstra qual identidade foi usada no instante de criação.</span></td></tr><tr id="C0002"><td>C0002</td><td>processo_pai</td><td><a class="ref" href="#P0003">P0003</a> <a class="ref" href="#P0001">P0001</a></td><td>PPID do filho = PID do pai no snapshot<br><span class="small">Confiança da associação: moderada. Não demonstra qual identidade foi usada no instante de criação.</span></td></tr><tr id="C0003"><td>C0003</td><td>processo_pai</td><td><a class="ref" href="#P0004">P0004</a> <a class="ref" href="#P0001">P0001</a></td><td>PPID do filho = PID do pai no snapshot<br><span class="small">Confiança da associação: moderada. Não demonstra qual identidade foi usada no instante de criação.</span></td></tr><tr id="C0004"><td>C0004</td><td>processo_codigo</td><td><a class="ref" href="#P0004">P0004</a> <a class="ref" href="#A0002">A0002</a></td><td>Caminho absoluto em posição de executável/script<br><span class="small">Confiança da associação: moderada. O conteúdo do arquivo não foi observado durante a execução.</span></td></tr><tr id="C0005"><td>C0005</td><td>processo_pai</td><td><a class="ref" href="#P0005">P0005</a> <a class="ref" href="#P0004">P0004</a></td><td>PPID do filho = PID do pai no snapshot<br><span class="small">Confiança da associação: moderada. Não demonstra qual identidade foi usada no instante de criação.</span></td></tr><tr id="C0006"><td>C0006</td><td>processo_pai</td><td><a class="ref" href="#P0006">P0006</a> <a class="ref" href="#P0002">P0002</a></td><td>PPID do filho = PID do pai no snapshot<br><span class="small">Confiança da associação: moderada. Não demonstra qual identidade foi usada no instante de criação.</span></td></tr><tr id="C0007"><td>C0007</td><td>processo_pai</td><td><a class="ref" href="#P0007">P0007</a> <a class="ref" href="#P0006">P0006</a></td><td>PPID do filho = PID do pai no snapshot<br><span class="small">Confiança da associação: moderada. Não demonstra qual identidade foi usada no instante de criação.</span></td></tr><tr id="C0008"><td>C0008</td><td>servico_processo</td><td><a class="ref" href="#S0001">S0001</a> <a class="ref" href="#P0002">P0002</a></td><td>argv completo e usuário iguais; associação candidata<br><span class="small">Confiança da associação: moderada. Associação atual não autentica eventos históricos; argv idêntico pode ocorrer em instâncias distintas.</span></td></tr><tr id="C0009"><td>C0009</td><td>servico_log</td><td><a class="ref" href="#S0001">S0001</a> <a class="ref" href="#L0001">L0001</a></td><td>Unidade explícita ou tag correspondente ao nome completo do serviço<br><span class="small">Confiança da associação: moderada. Tag textual pode ser falsificada; logs podem estar incompletos.</span></td></tr><tr id="C0010"><td>C0010</td><td>servico_processo</td><td><a class="ref" href="#S0002">S0002</a> <a class="ref" href="#P0003">P0003</a></td><td>argv completo e usuário iguais; associação candidata<br><span class="small">Confiança da associação: moderada. Associação atual não autentica eventos históricos; argv idêntico pode ocorrer em instâncias distintas.</span></td></tr><tr id="C0011"><td>C0011</td><td>servico_processo</td><td><a class="ref" href="#S0003">S0003</a> <a class="ref" href="#P0004">P0004</a></td><td>argv completo e usuário iguais; associação candidata<br><span class="small">Confiança da associação: moderada. Associação atual não autentica eventos históricos; argv idêntico pode ocorrer em instâncias distintas.</span></td></tr><tr id="C0012"><td>C0012</td><td>servico_codigo</td><td><a class="ref" href="#S0003">S0003</a> <a class="ref" href="#A0002">A0002</a></td><td>Código referenciado pelo ExecStart ou por processo associado<br><span class="small">Confiança da associação: moderada. Dependências carregadas indiretamente não são enumeradas.</span></td></tr><tr id="C0013"><td>C0013</td><td>servico_log</td><td><a class="ref" href="#S0003">S0003</a> <a class="ref" href="#L0002">L0002</a></td><td>Unidade explícita ou tag correspondente ao nome completo do serviço<br><span class="small">Confiança da associação: moderada. Tag textual pode ser falsificada; logs podem estar incompletos.</span></td></tr><tr id="C0014"><td>C0014</td><td>servico_log</td><td><a class="ref" href="#S0003">S0003</a> <a class="ref" href="#L0003">L0003</a></td><td>Unidade explícita ou tag correspondente ao nome completo do serviço<br><span class="small">Confiança da associação: moderada. Tag textual pode ser falsificada; logs podem estar incompletos.</span></td></tr><tr id="C0015"><td>C0015</td><td>servico_log</td><td><a class="ref" href="#S0003">S0003</a> <a class="ref" href="#L0004">L0004</a></td><td>Unidade explícita ou tag correspondente ao nome completo do serviço<br><span class="small">Confiança da associação: moderada. Tag textual pode ser falsificada; logs podem estar incompletos.</span></td></tr><tr id="C0016"><td>C0016</td><td>servico_log</td><td><a class="ref" href="#S0003">S0003</a> <a class="ref" href="#L0005">L0005</a></td><td>Unidade explícita ou tag correspondente ao nome completo do serviço<br><span class="small">Confiança da associação: moderada. Tag textual pode ser falsificada; logs podem estar incompletos.</span></td></tr><tr id="C0017"><td>C0017</td><td>processo_log</td><td><a class="ref" href="#P0001">P0001</a> <a class="ref" href="#L0001">L0001</a></td><td>PID numérico comum<br><span class="small">Confiança da associação: baixa. O PID pode ter sido reaproveitado por outro processo depois do evento registrado.</span></td></tr><tr id="C0018"><td>C0018</td><td>processo_log</td><td><a class="ref" href="#P0001">P0001</a> <a class="ref" href="#L0002">L0002</a></td><td>PID numérico comum<br><span class="small">Confiança da associação: baixa. O PID pode ter sido reaproveitado por outro processo depois do evento registrado.</span></td></tr><tr id="C0019"><td>C0019</td><td>processo_log</td><td><a class="ref" href="#P0004">P0004</a> <a class="ref" href="#L0003">L0003</a></td><td>PID numérico comum<br><span class="small">Confiança da associação: baixa. O PID pode ter sido reaproveitado por outro processo depois do evento registrado.</span></td></tr><tr id="C0020"><td>C0020</td><td>processo_log</td><td><a class="ref" href="#P0004">P0004</a> <a class="ref" href="#L0004">L0004</a></td><td>PID numérico comum<br><span class="small">Confiança da associação: baixa. O PID pode ter sido reaproveitado por outro processo depois do evento registrado.</span></td></tr><tr id="C0021"><td>C0021</td><td>processo_log</td><td><a class="ref" href="#P0004">P0004</a> <a class="ref" href="#L0005">L0005</a></td><td>PID numérico comum<br><span class="small">Confiança da associação: baixa. O PID pode ter sido reaproveitado por outro processo depois do evento registrado.</span></td></tr><tr id="C0022"><td>C0022</td><td>processo_log</td><td><a class="ref" href="#P0006">P0006</a> <a class="ref" href="#L0006">L0006</a></td><td>PID numérico comum<br><span class="small">Confiança da associação: baixa. O PID pode ter sido reaproveitado por outro processo depois do evento registrado.</span></td></tr></tbody></table></div><h2 id="evidencias">Evidências e proveniência</h2><details id="P0001"><summary>P0001 · processo · processes.csv:2</summary><h4>Registro original</h4><pre>2026-09-14T09:00:00+00:00,1,0,root,Ss,/sbin/init</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:00+00:00&quot;,
+  &quot;pid&quot;: 1,
+  &quot;ppid&quot;: 0,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;stat&quot;: &quot;Ss&quot;,
+  &quot;cmd&quot;: &quot;/sbin/init&quot;,
+  &quot;argv&quot;: [
+    &quot;/sbin/init&quot;
+  ]
+}</pre></details><details id="P0002"><summary>P0002 · processo · processes.csv:3</summary><h4>Registro original</h4><pre>2026-09-14T09:00:02+00:00,612,1,root,Ss,/usr/sbin/sshd -D</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:02+00:00&quot;,
+  &quot;pid&quot;: 612,
+  &quot;ppid&quot;: 1,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;stat&quot;: &quot;Ss&quot;,
+  &quot;cmd&quot;: &quot;/usr/sbin/sshd -D&quot;,
+  &quot;argv&quot;: [
+    &quot;/usr/sbin/sshd&quot;,
+    &quot;-D&quot;
+  ]
+}</pre></details><details id="P0003"><summary>P0003 · processo · processes.csv:4</summary><h4>Registro original</h4><pre>2026-09-14T09:00:04+00:00,821,1,root,Ss,/usr/sbin/cron -f</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:04+00:00&quot;,
+  &quot;pid&quot;: 821,
+  &quot;ppid&quot;: 1,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;stat&quot;: &quot;Ss&quot;,
+  &quot;cmd&quot;: &quot;/usr/sbin/cron -f&quot;,
+  &quot;argv&quot;: [
+    &quot;/usr/sbin/cron&quot;,
+    &quot;-f&quot;
+  ]
+}</pre></details><details id="P0004"><summary>P0004 · processo · processes.csv:5</summary><h4>Registro original</h4><pre>2026-09-14T09:00:06+00:00,2417,1,root,Ss,/bin/bash /opt/backup/backup.sh</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:06+00:00&quot;,
+  &quot;pid&quot;: 2417,
+  &quot;ppid&quot;: 1,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;stat&quot;: &quot;Ss&quot;,
+  &quot;cmd&quot;: &quot;/bin/bash /opt/backup/backup.sh&quot;,
+  &quot;argv&quot;: [
+    &quot;/bin/bash&quot;,
+    &quot;/opt/backup/backup.sh&quot;
+  ]
+}</pre></details><details id="P0005"><summary>P0005 · processo · processes.csv:6</summary><h4>Registro original</h4><pre>2026-09-14T09:00:08+00:00,2421,2417,root,S,/usr/bin/curl -fsS https://updates.example.invalid/status</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:08+00:00&quot;,
+  &quot;pid&quot;: 2421,
+  &quot;ppid&quot;: 2417,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;stat&quot;: &quot;S&quot;,
+  &quot;cmd&quot;: &quot;/usr/bin/curl -fsS https://updates.example.invalid/status&quot;,
+  &quot;argv&quot;: [
+    &quot;/usr/bin/curl&quot;,
+    &quot;-fsS&quot;,
+    &quot;https://updates.example.invalid/status&quot;
+  ]
+}</pre></details><details id="P0006"><summary>P0006 · processo · processes.csv:7</summary><h4>Registro original</h4><pre>2026-09-14T09:00:10+00:00,2630,612,aluno,Ss,sshd: aluno@pts/0</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:10+00:00&quot;,
+  &quot;pid&quot;: 2630,
+  &quot;ppid&quot;: 612,
+  &quot;user&quot;: &quot;aluno&quot;,
+  &quot;stat&quot;: &quot;Ss&quot;,
+  &quot;cmd&quot;: &quot;sshd: aluno@pts/0&quot;,
+  &quot;argv&quot;: [
+    &quot;sshd:&quot;,
+    &quot;aluno@pts/0&quot;
+  ]
+}</pre></details><details id="P0007"><summary>P0007 · processo · processes.csv:8</summary><h4>Registro original</h4><pre>2026-09-14T09:00:12+00:00,2638,2630,aluno,S,/bin/bash</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:12+00:00&quot;,
+  &quot;pid&quot;: 2638,
+  &quot;ppid&quot;: 2630,
+  &quot;user&quot;: &quot;aluno&quot;,
+  &quot;stat&quot;: &quot;S&quot;,
+  &quot;cmd&quot;: &quot;/bin/bash&quot;,
+  &quot;argv&quot;: [
+    &quot;/bin/bash&quot;
+  ]
+}</pre></details><details id="A0001"><summary>A0001 · permissao · permissions.csv:2</summary><h4>Registro original</h4><pre>/opt/backup,directory,root,root,0755,2026-09-14T09:00:00+00:00</pre><h4>Normalizado</h4><pre>{
+  &quot;path&quot;: &quot;/opt/backup&quot;,
+  &quot;type&quot;: &quot;directory&quot;,
+  &quot;owner&quot;: &quot;root&quot;,
+  &quot;group&quot;: &quot;root&quot;,
+  &quot;mode&quot;: &quot;0755&quot;,
+  &quot;mtime&quot;: &quot;2026-09-14T09:00:00+00:00&quot;
+}</pre></details><details id="A0002"><summary>A0002 · permissao · permissions.csv:3</summary><h4>Registro original</h4><pre>/opt/backup/backup.sh,file,root,root,0777,2026-09-13T08:59:00+00:00</pre><h4>Normalizado</h4><pre>{
+  &quot;path&quot;: &quot;/opt/backup/backup.sh&quot;,
+  &quot;type&quot;: &quot;file&quot;,
+  &quot;owner&quot;: &quot;root&quot;,
+  &quot;group&quot;: &quot;root&quot;,
+  &quot;mode&quot;: &quot;0777&quot;,
+  &quot;mtime&quot;: &quot;2026-09-13T08:59:00+00:00&quot;
+}</pre></details><details id="A0003"><summary>A0003 · permissao · permissions.csv:4</summary><h4>Registro original</h4><pre>/opt/backup/config.ini,file,root,backup,0640,2026-09-12T08:58:00+00:00</pre><h4>Normalizado</h4><pre>{
+  &quot;path&quot;: &quot;/opt/backup/config.ini&quot;,
+  &quot;type&quot;: &quot;file&quot;,
+  &quot;owner&quot;: &quot;root&quot;,
+  &quot;group&quot;: &quot;backup&quot;,
+  &quot;mode&quot;: &quot;0640&quot;,
+  &quot;mtime&quot;: &quot;2026-09-12T08:58:00+00:00&quot;
+}</pre></details><details id="A0004"><summary>A0004 · permissao · permissions.csv:5</summary><h4>Registro original</h4><pre>/usr/local/bin/report-sync,file,root,root,4755,2026-09-11T08:57:00+00:00</pre><h4>Normalizado</h4><pre>{
+  &quot;path&quot;: &quot;/usr/local/bin/report-sync&quot;,
+  &quot;type&quot;: &quot;file&quot;,
+  &quot;owner&quot;: &quot;root&quot;,
+  &quot;group&quot;: &quot;root&quot;,
+  &quot;mode&quot;: &quot;4755&quot;,
+  &quot;mtime&quot;: &quot;2026-09-11T08:57:00+00:00&quot;
+}</pre></details><details id="S0001"><summary>S0001 · servico · services.txt:2</summary><h4>Registro original</h4><pre>ssh.service                 running  root      /usr/sbin/sshd -D</pre><h4>Normalizado</h4><pre>{
+  &quot;unit&quot;: &quot;ssh.service&quot;,
+  &quot;active&quot;: &quot;running&quot;,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;execstart&quot;: &quot;/usr/sbin/sshd -D&quot;,
+  &quot;argv&quot;: [
+    &quot;/usr/sbin/sshd&quot;,
+    &quot;-D&quot;
+  ]
+}</pre></details><details id="S0002"><summary>S0002 · servico · services.txt:3</summary><h4>Registro original</h4><pre>cron.service                running  root      /usr/sbin/cron -f</pre><h4>Normalizado</h4><pre>{
+  &quot;unit&quot;: &quot;cron.service&quot;,
+  &quot;active&quot;: &quot;running&quot;,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;execstart&quot;: &quot;/usr/sbin/cron -f&quot;,
+  &quot;argv&quot;: [
+    &quot;/usr/sbin/cron&quot;,
+    &quot;-f&quot;
+  ]
+}</pre></details><details id="S0003"><summary>S0003 · servico · services.txt:4</summary><h4>Registro original</h4><pre>backup-agent.service        running  root      /bin/bash /opt/backup/backup.sh</pre><h4>Normalizado</h4><pre>{
+  &quot;unit&quot;: &quot;backup-agent.service&quot;,
+  &quot;active&quot;: &quot;running&quot;,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;execstart&quot;: &quot;/bin/bash /opt/backup/backup.sh&quot;,
+  &quot;argv&quot;: [
+    &quot;/bin/bash&quot;,
+    &quot;/opt/backup/backup.sh&quot;
+  ]
+}</pre></details><details id="L0001"><summary>L0001 · log · journal.log:1</summary><h4>Registro original</h4><pre>Sep 14 09:00:00 srv-app-01 systemd[1]: Started ssh.service - OpenBSD Secure Shell server.</pre><h4>Normalizado</h4><pre>{
+  &quot;mensagem&quot;: &quot;Started ssh.service - OpenBSD Secure Shell server.&quot;,
+  &quot;timestamp&quot;: &quot;Sep 14 09:00:00&quot;,
+  &quot;pid&quot;: 1,
+  &quot;tag&quot;: &quot;systemd&quot;,
+  &quot;host&quot;: &quot;srv-app-01&quot;,
+  &quot;precisao_temporal&quot;: &quot;ano_e_fuso_ausentes&quot;
+}</pre></details><details id="L0002"><summary>L0002 · log · journal.log:2</summary><h4>Registro original</h4><pre>Sep 14 09:02:00 srv-app-01 systemd[1]: Starting backup-agent.service - Internal Backup Agent...</pre><h4>Normalizado</h4><pre>{
+  &quot;mensagem&quot;: &quot;Starting backup-agent.service - Internal Backup Agent...&quot;,
+  &quot;timestamp&quot;: &quot;Sep 14 09:02:00&quot;,
+  &quot;pid&quot;: 1,
+  &quot;tag&quot;: &quot;systemd&quot;,
+  &quot;host&quot;: &quot;srv-app-01&quot;,
+  &quot;precisao_temporal&quot;: &quot;ano_e_fuso_ausentes&quot;
+}</pre></details><details id="L0003"><summary>L0003 · log · journal.log:3</summary><h4>Registro original</h4><pre>Sep 14 09:02:03 srv-app-01 backup-agent[2417]: backup job started</pre><h4>Normalizado</h4><pre>{
+  &quot;mensagem&quot;: &quot;backup job started&quot;,
+  &quot;timestamp&quot;: &quot;Sep 14 09:02:03&quot;,
+  &quot;pid&quot;: 2417,
+  &quot;tag&quot;: &quot;backup-agent&quot;,
+  &quot;host&quot;: &quot;srv-app-01&quot;,
+  &quot;precisao_temporal&quot;: &quot;ano_e_fuso_ausentes&quot;
+}</pre></details><details id="L0004"><summary>L0004 · log · journal.log:4</summary><h4>Registro original</h4><pre>Sep 14 09:02:04 srv-app-01 backup-agent[2417]: checking remote status endpoint</pre><h4>Normalizado</h4><pre>{
+  &quot;mensagem&quot;: &quot;checking remote status endpoint&quot;,
+  &quot;timestamp&quot;: &quot;Sep 14 09:02:04&quot;,
+  &quot;pid&quot;: 2417,
+  &quot;tag&quot;: &quot;backup-agent&quot;,
+  &quot;host&quot;: &quot;srv-app-01&quot;,
+  &quot;precisao_temporal&quot;: &quot;ano_e_fuso_ausentes&quot;
+}</pre></details><details id="L0005"><summary>L0005 · log · journal.log:5</summary><h4>Registro original</h4><pre>Sep 14 09:02:05 srv-app-01 backup-agent[2417]: backup completed with status=OK</pre><h4>Normalizado</h4><pre>{
+  &quot;mensagem&quot;: &quot;backup completed with status=OK&quot;,
+  &quot;timestamp&quot;: &quot;Sep 14 09:02:05&quot;,
+  &quot;pid&quot;: 2417,
+  &quot;tag&quot;: &quot;backup-agent&quot;,
+  &quot;host&quot;: &quot;srv-app-01&quot;,
+  &quot;precisao_temporal&quot;: &quot;ano_e_fuso_ausentes&quot;
+}</pre></details><details id="L0006"><summary>L0006 · log · journal.log:6</summary><h4>Registro original</h4><pre>Sep 14 09:25:00 srv-app-01 sshd[2630]: Accepted publickey for aluno from 10.20.30.44 port 51518 ssh2</pre><h4>Normalizado</h4><pre>{
+  &quot;mensagem&quot;: &quot;Accepted publickey for aluno from 10.20.30.44 port 51518 ssh2&quot;,
+  &quot;timestamp&quot;: &quot;Sep 14 09:25:00&quot;,
+  &quot;pid&quot;: 2630,
+  &quot;tag&quot;: &quot;sshd&quot;,
+  &quot;host&quot;: &quot;srv-app-01&quot;,
+  &quot;precisao_temporal&quot;: &quot;ano_e_fuso_ausentes&quot;
+}</pre></details><details id="L0007"><summary>L0007 · log · journal.log:7</summary><h4>Registro original</h4><pre>Sep 14 09:25:02 srv-app-01 systemd-logind[640]: New session 9 of user aluno.</pre><h4>Normalizado</h4><pre>{
+  &quot;mensagem&quot;: &quot;New session 9 of user aluno.&quot;,
+  &quot;timestamp&quot;: &quot;Sep 14 09:25:02&quot;,
+  &quot;pid&quot;: 640,
+  &quot;tag&quot;: &quot;systemd-logind&quot;,
+  &quot;host&quot;: &quot;srv-app-01&quot;,
+  &quot;precisao_temporal&quot;: &quot;ano_e_fuso_ausentes&quot;
+}</pre></details><h2 id="limites">Avisos e limitações</h2><div class="box"><ul><li>Datasets: USER é apenas o nome do usuário informado; UID/GID e grupos não foram fornecidos.</li><li>journal.log não informa ano/fuso: não é combinado com timestamps ISO como uma cronologia absoluta.</li><li>A coleta é uma foto do momento: processos podem terminar ou ter o PID reaproveitado durante a coleta.</li><li>A análise usa as permissões rwx de dono, grupo e outros; outros controles de acesso do sistema não são considerados.</li><li>A linha de comando mostrada pelo ps não prova qual arquivo foi executado nem o conteúdo de um script.</li><li>Só são reconhecidos executáveis com caminho absoluto e scripts chamados diretamente (ex.: bash /opt/x.sh); bash -c e caminhos relativos não são resolvidos.</li><li>mtime é a data da última modificação, não da criação, e não prova alteração maliciosa. O hash identifica os arquivos analisados, não quem os produziu.</li><li>Nenhuma regra demonstra exploração. Ausência de achados não demonstra segurança.</li></ul></div><h2>Artefatos analisados</h2><p>Hashes identificam os bytes analisados; não autenticam a origem da coleta.</p><pre>processes.csv
+SHA-256 4f1e0aec1093ce10e37c3462190d63b2e68d62cdce267d4a253dfe3fcd73cd15
+496 bytes</pre><pre>permissions.csv
+SHA-256 7e31f7c9b39cfa92a0d507dcde61820bdbb3515c969f77497f3b9427ed5cfd76
+313 bytes</pre><pre>services.txt
+SHA-256 993ecfa8b562932583905d1721ec10cc976e03b9af7f8094071cfd07a4ce9285
+267 bytes</pre><pre>journal.log
+SHA-256 36659e3b60701cbf9e05b4a85f662856e1ab5ffcc8d66d9557135eb09f3d6388
+588 bytes</pre><footer class="small">Regras locais e determinísticas. Nenhum modelo de linguagem é chamado durante a execução.</footer></main></body></html>

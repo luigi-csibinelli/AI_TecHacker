@@ -1,0 +1,37 @@
+test_all_refs_resolve_and_source_hashes_exist (test_investigator.InvestigationTests.test_all_refs_resolve_and_source_hashes_exist) ... ok
+test_ambiguous_http_command_only_context (test_investigator.InvestigationTests.test_ambiguous_http_command_only_context) ... ok
+test_collector_records_unavailable_commands (test_investigator.InvestigationTests.test_collector_records_unavailable_commands) ... ok
+test_collector_with_controlled_ps_systemctl_and_journal (test_investigator.InvestigationTests.test_collector_with_controlled_ps_systemctl_and_journal) ... ok
+test_correlation_has_three_dimensions_and_no_exploit_claim (test_investigator.InvestigationTests.test_correlation_has_three_dimensions_and_no_exploit_claim) ... ok
+test_data_argument_not_treated_as_executed_code (test_investigator.InvestigationTests.test_data_argument_not_treated_as_executed_code) ... ok
+test_directory_writable_by_others (test_investigator.InvestigationTests.test_directory_writable_by_others) ... ok
+test_duplicate_pid_fails (test_investigator.InvestigationTests.test_duplicate_pid_fails) ... ok
+test_exact_command_match_prevents_substring_service_link (test_investigator.InvestigationTests.test_exact_command_match_prevents_substring_service_link) ... ok
+test_group_write_requires_membership_evidence (test_investigator.InvestigationTests.test_group_write_requires_membership_evidence) ... ok
+test_html_escapes_untrusted_content (test_investigator.InvestigationTests.test_html_escapes_untrusted_content) ... ok
+test_invalid_octal_fails (test_investigator.InvestigationTests.test_invalid_octal_fails) ... ok
+test_iso_preserves_actual_timezone (test_investigator.InvestigationTests.test_iso_preserves_actual_timezone) ... ok
+test_isolated_writable_file_does_not_prove_privilege (test_investigator.InvestigationTests.test_isolated_writable_file_does_not_prove_privilege) ... ok
+test_log_without_year_timezone_not_invented (test_investigator.InvestigationTests.test_log_without_year_timezone_not_invented) ... ok
+test_main_pid_match_without_command_equality (test_investigator.InvestigationTests.test_main_pid_match_without_command_equality) ... ok
+test_metadata_and_readme_never_drive_decision (test_investigator.InvestigationTests.test_metadata_and_readme_never_drive_decision) ... ok
+test_missing_log_is_explicit (test_investigator.InvestigationTests.test_missing_log_is_explicit) ... ok
+test_missing_required_file_fails (test_investigator.InvestigationTests.test_missing_required_file_fails) ... ok
+test_nonobject_snapshot_rejected (test_investigator.InvestigationTests.test_nonobject_snapshot_rejected) ... ok
+test_nonroot_owner_is_flagged_for_privileged_code (test_investigator.InvestigationTests.test_nonroot_owner_is_flagged_for_privileged_code) ... ok
+test_normal_has_no_findings (test_investigator.InvestigationTests.test_normal_has_no_findings) ... ok
+test_original_fixed_scenarios_supported (test_investigator.InvestigationTests.test_original_fixed_scenarios_supported) ... ok
+test_permission_change_removes_correlated_risk (test_investigator.InvestigationTests.test_permission_change_removes_correlated_risk) ... ok
+test_pid_identity_transition_is_inconclusive (test_investigator.InvestigationTests.test_pid_identity_transition_is_inconclusive) ... ok
+test_random_generator_and_levels_do_not_crash (test_investigator.InvestigationTests.test_random_generator_and_levels_do_not_crash) ... ok
+test_readonly_script_in_writable_directory_remains_risk (test_investigator.InvestigationTests.test_readonly_script_in_writable_directory_remains_risk) ... ok
+test_root_service_protected_script_not_high_risk (test_investigator.InvestigationTests.test_root_service_protected_script_not_high_risk) ... ok
+test_sgid_is_informational (test_investigator.InvestigationTests.test_sgid_is_informational) ... ok
+test_snapshot_round_trip_and_malformed_rejected (test_investigator.InvestigationTests.test_snapshot_round_trip_and_malformed_rejected) ... ok
+test_suid_is_informational (test_investigator.InvestigationTests.test_suid_is_informational) ... ok
+test_unknown_parent_and_cycles_do_not_hang (test_investigator.InvestigationTests.test_unknown_parent_and_cycles_do_not_hang) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 0.353s
+
+OK

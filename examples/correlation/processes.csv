@@ -1,0 +1,8 @@
+timestamp,pid,ppid,user,stat,cmd
+2026-09-14T09:00:00+00:00,1,0,root,Ss,/sbin/init
+2026-09-14T09:00:02+00:00,612,1,root,Ss,/usr/sbin/sshd -D
+2026-09-14T09:00:04+00:00,821,1,root,Ss,/usr/sbin/cron -f
+2026-09-14T09:00:06+00:00,2417,1,root,Ss,/bin/bash /opt/backup/backup.sh
+2026-09-14T09:00:08+00:00,2421,2417,root,S,/usr/bin/curl -fsS https://updates.example.invalid/status
+2026-09-14T09:00:10+00:00,2630,612,aluno,Ss,sshd: aluno@pts/0
+2026-09-14T09:00:12+00:00,2638,2630,aluno,S,/bin/bash

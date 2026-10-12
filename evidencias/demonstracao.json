@@ -1,0 +1,136 @@
+{
+  "executado_em": "2026-09-29T18:57:47+00:00",
+  "natureza": "Dados sintéticos; resultados obtidos por execução do motor.",
+  "cenarios": [
+    {
+      "cenario": "normal",
+      "evidencias": 21,
+      "relacoes": 16,
+      "achados": 0,
+      "por_prioridade": {
+        "alta": 0,
+        "media": 0,
+        "baixa": 0,
+        "informativa": 0
+      },
+      "por_tipo_de_evidencia": {
+        "processo": 8,
+        "permissao": 5,
+        "servico": 3,
+        "log": 5
+      },
+      "conclusao": "As regras não determinam ocorrência de exploração; os achados indicam verificações a realizar.",
+      "regras": {}
+    },
+    {
+      "cenario": "permission",
+      "evidencias": 23,
+      "relacoes": 16,
+      "achados": 1,
+      "por_prioridade": {
+        "alta": 0,
+        "media": 1,
+        "baixa": 0,
+        "informativa": 0
+      },
+      "por_tipo_de_evidencia": {
+        "processo": 8,
+        "permissao": 7,
+        "servico": 3,
+        "log": 5
+      },
+      "conclusao": "As regras não determinam ocorrência de exploração; os achados indicam verificações a realizar.",
+      "regras": {
+        "R03": 1
+      }
+    },
+    {
+      "cenario": "privileged_service",
+      "evidencias": 17,
+      "relacoes": 21,
+      "achados": 1,
+      "por_prioridade": {
+        "alta": 0,
+        "media": 0,
+        "baixa": 0,
+        "informativa": 1
+      },
+      "por_tipo_de_evidencia": {
+        "processo": 5,
+        "permissao": 3,
+        "servico": 3,
+        "log": 6
+      },
+      "conclusao": "As regras não determinam ocorrência de exploração; os achados indicam verificações a realizar.",
+      "regras": {
+        "R06": 1
+      }
+    },
+    {
+      "cenario": "correlation",
+      "evidencias": 21,
+      "relacoes": 22,
+      "achados": 3,
+      "por_prioridade": {
+        "alta": 1,
+        "media": 0,
+        "baixa": 0,
+        "informativa": 2
+      },
+      "por_tipo_de_evidencia": {
+        "processo": 7,
+        "permissao": 4,
+        "servico": 3,
+        "log": 7
+      },
+      "conclusao": "As regras não determinam ocorrência de exploração; os achados indicam verificações a realizar.",
+      "regras": {
+        "R01": 1,
+        "R04": 1,
+        "R06": 1
+      }
+    },
+    {
+      "cenario": "ambiguous",
+      "evidencias": 20,
+      "relacoes": 23,
+      "achados": 1,
+      "por_prioridade": {
+        "alta": 0,
+        "media": 0,
+        "baixa": 0,
+        "informativa": 1
+      },
+      "por_tipo_de_evidencia": {
+        "processo": 8,
+        "permissao": 3,
+        "servico": 3,
+        "log": 6
+      },
+      "conclusao": "As regras não determinam ocorrência de exploração; os achados indicam verificações a realizar.",
+      "regras": {
+        "R06": 1
+      }
+    },
+    {
+      "cenario": "random",
+      "evidencias": 26,
+      "relacoes": 22,
+      "achados": 0,
+      "por_prioridade": {
+        "alta": 0,
+        "media": 0,
+        "baixa": 0,
+        "informativa": 0
+      },
+      "por_tipo_de_evidencia": {
+        "processo": 9,
+        "permissao": 7,
+        "servico": 4,
+        "log": 6
+      },
+      "conclusao": "As regras não determinam ocorrência de exploração; os achados indicam verificações a realizar.",
+      "regras": {}
+    }
+  ]
+}

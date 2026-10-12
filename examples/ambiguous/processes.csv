@@ -1,0 +1,9 @@
+timestamp,pid,ppid,user,stat,cmd
+2026-09-14T09:00:00+00:00,1,0,root,Ss,/sbin/init
+2026-09-14T09:00:02+00:00,612,1,root,Ss,/usr/sbin/sshd -D
+2026-09-14T09:00:04+00:00,901,1,root,Ss,/usr/sbin/cron -f
+2026-09-14T09:00:06+00:00,1500,1,root,S,/usr/bin/python3 /opt/monitor/agent.py
+2026-09-14T09:00:08+00:00,1510,1500,root,S,/usr/bin/curl -fsS https://metrics.example.invalid/v1/push
+2026-09-14T09:00:10+00:00,1632,612,aluno,Ss,sshd: aluno@pts/0
+2026-09-14T09:00:12+00:00,1640,1632,aluno,S,/bin/bash
+2026-09-14T09:00:14+00:00,1645,1640,aluno,S,/usr/bin/python3 /home/aluno/check.py

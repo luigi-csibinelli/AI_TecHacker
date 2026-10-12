@@ -1,0 +1,227 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<title>Endpoint Investigator · Evidências</title><style>
+:root{font-family:system-ui,-apple-system,sans-serif;color:#192b3b;background:#edf1f4;line-height:1.6}
+*{box-sizing:border-box}body{margin:0;overflow-wrap:anywhere}main{max-width:1120px;margin:auto;padding:32px 24px 64px}
+header{background:#102b3f;color:#fff;padding:36px 28px;border-radius:12px}h1{font-size:32px;margin:0 0 10px}
+h2{margin-top:34px;font-size:24px}h3{font-size:19px;margin:6px 0 16px}h4{margin:20px 0 4px}
+p{margin:8px 0 14px}.eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#9fd4e4}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0}.metric,article,details,.box{background:white;border:1px solid #d6dfe5;border-radius:9px;padding:20px;margin:14px 0}
+.metric{margin:0}.metric strong{display:block;font-size:29px}.tag{display:inline-block;padding:2px 9px;background:#eaf0f4;border-radius:5px;font-size:13px}
+.alta{border-left:5px solid #ad3e30}.media{border-left:5px solid #aa7315}.informativa{border-left:5px solid #27748e}
+a{color:#126881}.ref{display:inline-block;padding:2px 7px;background:#edf6f9;border-radius:4px;margin:2px;font-family:monospace}
+code,pre{font-family:ui-monospace,monospace;font-size:12px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f1f5f7;padding:12px;border-radius:5px}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #dce4e9;padding:10px;overflow-wrap:anywhere}
+summary{cursor:pointer;font-weight:600}.small{font-size:13px;color:#536676}li{margin:5px 0}.scroll{overflow-x:auto}footer{margin-top:36px}
+@media(max-width:650px){.cards{grid-template-columns:1fr}main{padding:16px}h1{font-size:26px}th,td{min-width:100px}}
+@media print{body{background:white}main{padding:0}article{break-inside:avoid}header{color:#102b3f;background:white;border:1px solid #bbc9d2}.ref{color:#102b3f}details{break-inside:avoid}}
+</style></head><body><main><header><div class="eyebrow">Tecnologias Hackers · investigação de endpoint</div>
+<h1>Endpoint Investigator</h1><p>Evidência → relação → interpretação → hipótese</p><p>Origem: dataset · Análise: 2026-09-29T18:57:47+00:00</p></header><div class="cards"><div class="metric"><strong>23</strong>Evidências registradas</div><div class="metric"><strong>16</strong>Relações explícitas</div><div class="metric"><strong>1</strong>Achados para investigação</div></div><p class="box">As regras não determinam ocorrência de exploração; os achados indicam verificações a realizar.</p><nav><a href="#achados">Achados</a> · <a href="#contextos">Serviços e logs</a> · <a href="#relacoes">Relações</a> · <a href="#evidencias">Evidências</a> · <a href="#limites">Limitações</a></nav><h2 id="achados">Achados</h2><article id="F0001" class="media"><span class="tag">F0001 / R03 · risco · prioridade media</span><h3>Arquivo com escrita para outros: /opt/reports/report.sh</h3><p><a class="ref" href="#A0006">A0006</a></p><h4>Observado</h4><ul><li>/opt/reports/report.sh: proprietário root, grupo root, modo 0777.</li></ul><h4>Interpretação</h4><p>O modo concede escrita a outros; nenhuma relação com execução privilegiada foi estabelecida.</p><h4>Hipótese</h4><p>Pode ser compartilhamento intencional ou uma configuração inadequada.</p><h4>Evidências ausentes</h4><ul><li>Finalidade do arquivo e quem deveria poder alterá-lo.</li><li>Serviço/processo que usa o arquivo e com qual usuário.</li></ul><h4>Próximos passos</h4><ul><li>Identificar quem usa o arquivo e quais permissões são necessárias.</li></ul><p class="small">Exploração comprovada: não. Relações: </p></article><h2 id="contextos">Serviços e eventos</h2><details><summary>Contexto S0001</summary><p>Serviço: <a class="ref" href="#S0001">S0001</a> · Processos candidatos: <a class="ref" href="#P0002">P0002</a></p><h4>Código referenciado</h4><ul><li>/usr/sbin/sshd</li></ul><h4>Sem metadados</h4><ul><li>/usr/sbin/sshd</li></ul><h4>Eventos na ordem da fonte</h4><p><a class="ref" href="#L0001">L0001</a></p><p class="small">Lista de eventos da fonte; não estabelece causalidade nem uma cronologia absoluta.</p></details><details><summary>Contexto S0002</summary><p>Serviço: <a class="ref" href="#S0002">S0002</a> · Processos candidatos: </p><h4>Código referenciado</h4><ul><li>/usr/sbin/apachectl</li></ul><h4>Sem metadados</h4><ul><li>/usr/sbin/apachectl</li></ul><h4>Eventos na ordem da fonte</h4><p><a class="ref" href="#L0002">L0002</a></p><p class="small">Lista de eventos da fonte; não estabelece causalidade nem uma cronologia absoluta.</p></details><details><summary>Contexto S0003</summary><p>Serviço: <a class="ref" href="#S0003">S0003</a> · Processos candidatos: <a class="ref" href="#P0003">P0003</a></p><h4>Código referenciado</h4><ul><li>/usr/sbin/cron</li></ul><h4>Sem metadados</h4><ul><li>/usr/sbin/cron</li></ul><h4>Eventos na ordem da fonte</h4><p></p><p class="small">Lista de eventos da fonte; não estabelece causalidade nem uma cronologia absoluta.</p></details><h2 id="relacoes">Relações</h2><div class="scroll"><table><thead><tr><th>ID</th><th>Relação</th><th>Origem / destino</th><th>Critério e limite</th></tr></thead><tbody><tr id="C0001"><td>C0001</td><td>processo_pai</td><td><a class="ref" href="#P0002">P0002</a> <a class="ref" href="#P0001">P0001</a></td><td>PPID do filho = PID do pai no snapshot<br><span class="small">Confiança da associação: moderada. Não demonstra qual identidade foi usada no instante de criação.</span></td></tr><tr id="C0002"><td>C0002</td><td>processo_pai</td><td><a class="ref" href="#P0003">P0003</a> <a class="ref" href="#P0001">P0001</a></td><td>PPID do filho = PID do pai no snapshot<br><span class="small">Confiança da associação: moderada. Não demonstra qual identidade foi usada no instante de criação.</span></td></tr><tr id="C0003"><td>C0003</td><td>processo_pai</td><td><a class="ref" href="#P0004">P0004</a> <a class="ref" href="#P0001">P0001</a></td><td>PPID do filho = PID do pai no snapshot<br><span class="small">Confiança da associação: moderada. Não demonstra qual identidade foi usada no instante de criação.</span></td></tr><tr id="C0004"><td>C0004</td><td>processo_pai</td><td><a class="ref" href="#P0005">P0005</a> <a class="ref" href="#P0004">P0004</a></td><td>PPID do filho = PID do pai no snapshot<br><span class="small">Confiança da associação: moderada. Não demonstra qual identidade foi usada no instante de criação.</span></td></tr><tr id="C0005"><td>C0005</td><td>processo_pai</td><td><a class="ref" href="#P0006">P0006</a> <a class="ref" href="#P0002">P0002</a></td><td>PPID do filho = PID do pai no snapshot<br><span class="small">Confiança da associação: moderada. Não demonstra qual identidade foi usada no instante de criação.</span></td></tr><tr id="C0006"><td>C0006</td><td>processo_pai</td><td><a class="ref" href="#P0007">P0007</a> <a class="ref" href="#P0006">P0006</a></td><td>PPID do filho = PID do pai no snapshot<br><span class="small">Confiança da associação: moderada. Não demonstra qual identidade foi usada no instante de criação.</span></td></tr><tr id="C0007"><td>C0007</td><td>processo_pai</td><td><a class="ref" href="#P0008">P0008</a> <a class="ref" href="#P0007">P0007</a></td><td>PPID do filho = PID do pai no snapshot<br><span class="small">Confiança da associação: moderada. Não demonstra qual identidade foi usada no instante de criação.</span></td></tr><tr id="C0008"><td>C0008</td><td>processo_codigo</td><td><a class="ref" href="#P0008">P0008</a> <a class="ref" href="#A0005">A0005</a></td><td>Caminho absoluto em posição de executável/script<br><span class="small">Confiança da associação: moderada. O conteúdo do arquivo não foi observado durante a execução.</span></td></tr><tr id="C0009"><td>C0009</td><td>servico_processo</td><td><a class="ref" href="#S0001">S0001</a> <a class="ref" href="#P0002">P0002</a></td><td>argv completo e usuário iguais; associação candidata<br><span class="small">Confiança da associação: moderada. Associação atual não autentica eventos históricos; argv idêntico pode ocorrer em instâncias distintas.</span></td></tr><tr id="C0010"><td>C0010</td><td>servico_log</td><td><a class="ref" href="#S0001">S0001</a> <a class="ref" href="#L0001">L0001</a></td><td>Unidade explícita ou tag correspondente ao nome completo do serviço<br><span class="small">Confiança da associação: moderada. Tag textual pode ser falsificada; logs podem estar incompletos.</span></td></tr><tr id="C0011"><td>C0011</td><td>servico_log</td><td><a class="ref" href="#S0002">S0002</a> <a class="ref" href="#L0002">L0002</a></td><td>Unidade explícita ou tag correspondente ao nome completo do serviço<br><span class="small">Confiança da associação: moderada. Tag textual pode ser falsificada; logs podem estar incompletos.</span></td></tr><tr id="C0012"><td>C0012</td><td>servico_processo</td><td><a class="ref" href="#S0003">S0003</a> <a class="ref" href="#P0003">P0003</a></td><td>argv completo e usuário iguais; associação candidata<br><span class="small">Confiança da associação: moderada. Associação atual não autentica eventos históricos; argv idêntico pode ocorrer em instâncias distintas.</span></td></tr><tr id="C0013"><td>C0013</td><td>processo_log</td><td><a class="ref" href="#P0001">P0001</a> <a class="ref" href="#L0001">L0001</a></td><td>PID numérico comum<br><span class="small">Confiança da associação: baixa. O PID pode ter sido reaproveitado por outro processo depois do evento registrado.</span></td></tr><tr id="C0014"><td>C0014</td><td>processo_log</td><td><a class="ref" href="#P0001">P0001</a> <a class="ref" href="#L0002">L0002</a></td><td>PID numérico comum<br><span class="small">Confiança da associação: baixa. O PID pode ter sido reaproveitado por outro processo depois do evento registrado.</span></td></tr><tr id="C0015"><td>C0015</td><td>processo_log</td><td><a class="ref" href="#P0006">P0006</a> <a class="ref" href="#L0003">L0003</a></td><td>PID numérico comum<br><span class="small">Confiança da associação: baixa. O PID pode ter sido reaproveitado por outro processo depois do evento registrado.</span></td></tr><tr id="C0016"><td>C0016</td><td>processo_log</td><td><a class="ref" href="#P0008">P0008</a> <a class="ref" href="#L0005">L0005</a></td><td>PID numérico comum<br><span class="small">Confiança da associação: baixa. O PID pode ter sido reaproveitado por outro processo depois do evento registrado.</span></td></tr></tbody></table></div><h2 id="evidencias">Evidências e proveniência</h2><details id="P0001"><summary>P0001 · processo · processes.csv:2</summary><h4>Registro original</h4><pre>2026-09-14T09:00:00+00:00,1,0,root,Ss,/sbin/init</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:00+00:00&quot;,
+  &quot;pid&quot;: 1,
+  &quot;ppid&quot;: 0,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;stat&quot;: &quot;Ss&quot;,
+  &quot;cmd&quot;: &quot;/sbin/init&quot;,
+  &quot;argv&quot;: [
+    &quot;/sbin/init&quot;
+  ]
+}</pre></details><details id="P0002"><summary>P0002 · processo · processes.csv:3</summary><h4>Registro original</h4><pre>2026-09-14T09:00:02+00:00,612,1,root,Ss,/usr/sbin/sshd -D</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:02+00:00&quot;,
+  &quot;pid&quot;: 612,
+  &quot;ppid&quot;: 1,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;stat&quot;: &quot;Ss&quot;,
+  &quot;cmd&quot;: &quot;/usr/sbin/sshd -D&quot;,
+  &quot;argv&quot;: [
+    &quot;/usr/sbin/sshd&quot;,
+    &quot;-D&quot;
+  ]
+}</pre></details><details id="P0003"><summary>P0003 · processo · processes.csv:4</summary><h4>Registro original</h4><pre>2026-09-14T09:00:04+00:00,701,1,root,Ss,/usr/sbin/cron -f</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:04+00:00&quot;,
+  &quot;pid&quot;: 701,
+  &quot;ppid&quot;: 1,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;stat&quot;: &quot;Ss&quot;,
+  &quot;cmd&quot;: &quot;/usr/sbin/cron -f&quot;,
+  &quot;argv&quot;: [
+    &quot;/usr/sbin/cron&quot;,
+    &quot;-f&quot;
+  ]
+}</pre></details><details id="P0004"><summary>P0004 · processo · processes.csv:5</summary><h4>Registro original</h4><pre>2026-09-14T09:00:06+00:00,733,1,www-data,S,/usr/sbin/apache2 -k start</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:06+00:00&quot;,
+  &quot;pid&quot;: 733,
+  &quot;ppid&quot;: 1,
+  &quot;user&quot;: &quot;www-data&quot;,
+  &quot;stat&quot;: &quot;S&quot;,
+  &quot;cmd&quot;: &quot;/usr/sbin/apache2 -k start&quot;,
+  &quot;argv&quot;: [
+    &quot;/usr/sbin/apache2&quot;,
+    &quot;-k&quot;,
+    &quot;start&quot;
+  ]
+}</pre></details><details id="P0005"><summary>P0005 · processo · processes.csv:6</summary><h4>Registro original</h4><pre>2026-09-14T09:00:08+00:00,744,733,www-data,S,/usr/sbin/apache2 -k start</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:08+00:00&quot;,
+  &quot;pid&quot;: 744,
+  &quot;ppid&quot;: 733,
+  &quot;user&quot;: &quot;www-data&quot;,
+  &quot;stat&quot;: &quot;S&quot;,
+  &quot;cmd&quot;: &quot;/usr/sbin/apache2 -k start&quot;,
+  &quot;argv&quot;: [
+    &quot;/usr/sbin/apache2&quot;,
+    &quot;-k&quot;,
+    &quot;start&quot;
+  ]
+}</pre></details><details id="P0006"><summary>P0006 · processo · processes.csv:7</summary><h4>Registro original</h4><pre>2026-09-14T09:00:10+00:00,1204,612,aluno,Ss,sshd: aluno@pts/0</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:10+00:00&quot;,
+  &quot;pid&quot;: 1204,
+  &quot;ppid&quot;: 612,
+  &quot;user&quot;: &quot;aluno&quot;,
+  &quot;stat&quot;: &quot;Ss&quot;,
+  &quot;cmd&quot;: &quot;sshd: aluno@pts/0&quot;,
+  &quot;argv&quot;: [
+    &quot;sshd:&quot;,
+    &quot;aluno@pts/0&quot;
+  ]
+}</pre></details><details id="P0007"><summary>P0007 · processo · processes.csv:8</summary><h4>Registro original</h4><pre>2026-09-14T09:00:12+00:00,1212,1204,aluno,S,/bin/bash</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:12+00:00&quot;,
+  &quot;pid&quot;: 1212,
+  &quot;ppid&quot;: 1204,
+  &quot;user&quot;: &quot;aluno&quot;,
+  &quot;stat&quot;: &quot;S&quot;,
+  &quot;cmd&quot;: &quot;/bin/bash&quot;,
+  &quot;argv&quot;: [
+    &quot;/bin/bash&quot;
+  ]
+}</pre></details><details id="P0008"><summary>P0008 · processo · processes.csv:9</summary><h4>Registro original</h4><pre>2026-09-14T09:00:14+00:00,1234,1212,aluno,S,/usr/bin/python3 /home/aluno/check.py</pre><h4>Normalizado</h4><pre>{
+  &quot;timestamp&quot;: &quot;2026-09-14T09:00:14+00:00&quot;,
+  &quot;pid&quot;: 1234,
+  &quot;ppid&quot;: 1212,
+  &quot;user&quot;: &quot;aluno&quot;,
+  &quot;stat&quot;: &quot;S&quot;,
+  &quot;cmd&quot;: &quot;/usr/bin/python3 /home/aluno/check.py&quot;,
+  &quot;argv&quot;: [
+    &quot;/usr/bin/python3&quot;,
+    &quot;/home/aluno/check.py&quot;
+  ]
+}</pre></details><details id="A0001"><summary>A0001 · permissao · permissions.csv:2</summary><h4>Registro original</h4><pre>/opt/app,directory,root,root,0755,2026-09-14T09:00:00+00:00</pre><h4>Normalizado</h4><pre>{
+  &quot;path&quot;: &quot;/opt/app&quot;,
+  &quot;type&quot;: &quot;directory&quot;,
+  &quot;owner&quot;: &quot;root&quot;,
+  &quot;group&quot;: &quot;root&quot;,
+  &quot;mode&quot;: &quot;0755&quot;,
+  &quot;mtime&quot;: &quot;2026-09-14T09:00:00+00:00&quot;
+}</pre></details><details id="A0002"><summary>A0002 · permissao · permissions.csv:3</summary><h4>Registro original</h4><pre>/opt/app/check.py,file,root,root,0755,2026-09-13T08:59:00+00:00</pre><h4>Normalizado</h4><pre>{
+  &quot;path&quot;: &quot;/opt/app/check.py&quot;,
+  &quot;type&quot;: &quot;file&quot;,
+  &quot;owner&quot;: &quot;root&quot;,
+  &quot;group&quot;: &quot;root&quot;,
+  &quot;mode&quot;: &quot;0755&quot;,
+  &quot;mtime&quot;: &quot;2026-09-13T08:59:00+00:00&quot;
+}</pre></details><details id="A0003"><summary>A0003 · permissao · permissions.csv:4</summary><h4>Registro original</h4><pre>/etc/shadow,file,root,shadow,0640,2026-09-12T08:58:00+00:00</pre><h4>Normalizado</h4><pre>{
+  &quot;path&quot;: &quot;/etc/shadow&quot;,
+  &quot;type&quot;: &quot;file&quot;,
+  &quot;owner&quot;: &quot;root&quot;,
+  &quot;group&quot;: &quot;shadow&quot;,
+  &quot;mode&quot;: &quot;0640&quot;,
+  &quot;mtime&quot;: &quot;2026-09-12T08:58:00+00:00&quot;
+}</pre></details><details id="A0004"><summary>A0004 · permissao · permissions.csv:5</summary><h4>Registro original</h4><pre>/usr/local/bin/report-sync,file,root,root,0755,2026-09-11T08:57:00+00:00</pre><h4>Normalizado</h4><pre>{
+  &quot;path&quot;: &quot;/usr/local/bin/report-sync&quot;,
+  &quot;type&quot;: &quot;file&quot;,
+  &quot;owner&quot;: &quot;root&quot;,
+  &quot;group&quot;: &quot;root&quot;,
+  &quot;mode&quot;: &quot;0755&quot;,
+  &quot;mtime&quot;: &quot;2026-09-11T08:57:00+00:00&quot;
+}</pre></details><details id="A0005"><summary>A0005 · permissao · permissions.csv:6</summary><h4>Registro original</h4><pre>/home/aluno/check.py,file,aluno,aluno,0755,2026-09-10T08:56:00+00:00</pre><h4>Normalizado</h4><pre>{
+  &quot;path&quot;: &quot;/home/aluno/check.py&quot;,
+  &quot;type&quot;: &quot;file&quot;,
+  &quot;owner&quot;: &quot;aluno&quot;,
+  &quot;group&quot;: &quot;aluno&quot;,
+  &quot;mode&quot;: &quot;0755&quot;,
+  &quot;mtime&quot;: &quot;2026-09-10T08:56:00+00:00&quot;
+}</pre></details><details id="A0006"><summary>A0006 · permissao · permissions.csv:7</summary><h4>Registro original</h4><pre>/opt/reports/report.sh,file,root,root,0777,2026-09-12T09:00:00+00:00</pre><h4>Normalizado</h4><pre>{
+  &quot;path&quot;: &quot;/opt/reports/report.sh&quot;,
+  &quot;type&quot;: &quot;file&quot;,
+  &quot;owner&quot;: &quot;root&quot;,
+  &quot;group&quot;: &quot;root&quot;,
+  &quot;mode&quot;: &quot;0777&quot;,
+  &quot;mtime&quot;: &quot;2026-09-12T09:00:00+00:00&quot;
+}</pre></details><details id="A0007"><summary>A0007 · permissao · permissions.csv:8</summary><h4>Registro original</h4><pre>/opt/reports,directory,root,root,0755,2026-09-11T09:00:00+00:00</pre><h4>Normalizado</h4><pre>{
+  &quot;path&quot;: &quot;/opt/reports&quot;,
+  &quot;type&quot;: &quot;directory&quot;,
+  &quot;owner&quot;: &quot;root&quot;,
+  &quot;group&quot;: &quot;root&quot;,
+  &quot;mode&quot;: &quot;0755&quot;,
+  &quot;mtime&quot;: &quot;2026-09-11T09:00:00+00:00&quot;
+}</pre></details><details id="S0001"><summary>S0001 · servico · services.txt:2</summary><h4>Registro original</h4><pre>ssh.service                 running  root      /usr/sbin/sshd -D</pre><h4>Normalizado</h4><pre>{
+  &quot;unit&quot;: &quot;ssh.service&quot;,
+  &quot;active&quot;: &quot;running&quot;,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;execstart&quot;: &quot;/usr/sbin/sshd -D&quot;,
+  &quot;argv&quot;: [
+    &quot;/usr/sbin/sshd&quot;,
+    &quot;-D&quot;
+  ]
+}</pre></details><details id="S0002"><summary>S0002 · servico · services.txt:3</summary><h4>Registro original</h4><pre>apache2.service             running  root      /usr/sbin/apachectl start</pre><h4>Normalizado</h4><pre>{
+  &quot;unit&quot;: &quot;apache2.service&quot;,
+  &quot;active&quot;: &quot;running&quot;,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;execstart&quot;: &quot;/usr/sbin/apachectl start&quot;,
+  &quot;argv&quot;: [
+    &quot;/usr/sbin/apachectl&quot;,
+    &quot;start&quot;
+  ]
+}</pre></details><details id="S0003"><summary>S0003 · servico · services.txt:4</summary><h4>Registro original</h4><pre>cron.service                running  root      /usr/sbin/cron -f</pre><h4>Normalizado</h4><pre>{
+  &quot;unit&quot;: &quot;cron.service&quot;,
+  &quot;active&quot;: &quot;running&quot;,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;execstart&quot;: &quot;/usr/sbin/cron -f&quot;,
+  &quot;argv&quot;: [
+    &quot;/usr/sbin/cron&quot;,
+    &quot;-f&quot;
+  ]
+}</pre></details><details id="L0001"><summary>L0001 · log · journal.log:1</summary><h4>Registro original</h4><pre>Sep 14 09:00:00 srv-app-01 systemd[1]: Started ssh.service - OpenBSD Secure Shell server.</pre><h4>Normalizado</h4><pre>{
+  &quot;mensagem&quot;: &quot;Started ssh.service - OpenBSD Secure Shell server.&quot;,
+  &quot;timestamp&quot;: &quot;Sep 14 09:00:00&quot;,
+  &quot;pid&quot;: 1,
+  &quot;tag&quot;: &quot;systemd&quot;,
+  &quot;host&quot;: &quot;srv-app-01&quot;,
+  &quot;precisao_temporal&quot;: &quot;ano_e_fuso_ausentes&quot;
+}</pre></details><details id="L0002"><summary>L0002 · log · journal.log:2</summary><h4>Registro original</h4><pre>Sep 14 09:00:02 srv-app-01 systemd[1]: Started apache2.service - The Apache HTTP Server.</pre><h4>Normalizado</h4><pre>{
+  &quot;mensagem&quot;: &quot;Started apache2.service - The Apache HTTP Server.&quot;,
+  &quot;timestamp&quot;: &quot;Sep 14 09:00:02&quot;,
+  &quot;pid&quot;: 1,
+  &quot;tag&quot;: &quot;systemd&quot;,
+  &quot;host&quot;: &quot;srv-app-01&quot;,
+  &quot;precisao_temporal&quot;: &quot;ano_e_fuso_ausentes&quot;
+}</pre></details><details id="L0003"><summary>L0003 · log · journal.log:3</summary><h4>Registro original</h4><pre>Sep 14 09:00:08 srv-app-01 sshd[1204]: Accepted publickey for aluno from 10.20.30.44 port 51518 ssh2</pre><h4>Normalizado</h4><pre>{
+  &quot;mensagem&quot;: &quot;Accepted publickey for aluno from 10.20.30.44 port 51518 ssh2&quot;,
+  &quot;timestamp&quot;: &quot;Sep 14 09:00:08&quot;,
+  &quot;pid&quot;: 1204,
+  &quot;tag&quot;: &quot;sshd&quot;,
+  &quot;host&quot;: &quot;srv-app-01&quot;,
+  &quot;precisao_temporal&quot;: &quot;ano_e_fuso_ausentes&quot;
+}</pre></details><details id="L0004"><summary>L0004 · log · journal.log:4</summary><h4>Registro original</h4><pre>Sep 14 09:00:10 srv-app-01 systemd-logind[640]: New session 7 of user aluno.</pre><h4>Normalizado</h4><pre>{
+  &quot;mensagem&quot;: &quot;New session 7 of user aluno.&quot;,
+  &quot;timestamp&quot;: &quot;Sep 14 09:00:10&quot;,
+  &quot;pid&quot;: 640,
+  &quot;tag&quot;: &quot;systemd-logind&quot;,
+  &quot;host&quot;: &quot;srv-app-01&quot;,
+  &quot;precisao_temporal&quot;: &quot;ano_e_fuso_ausentes&quot;
+}</pre></details><details id="L0005"><summary>L0005 · log · journal.log:5</summary><h4>Registro original</h4><pre>Sep 14 09:00:15 srv-app-01 python3[1234]: routine check completed status=OK</pre><h4>Normalizado</h4><pre>{
+  &quot;mensagem&quot;: &quot;routine check completed status=OK&quot;,
+  &quot;timestamp&quot;: &quot;Sep 14 09:00:15&quot;,
+  &quot;pid&quot;: 1234,
+  &quot;tag&quot;: &quot;python3&quot;,
+  &quot;host&quot;: &quot;srv-app-01&quot;,
+  &quot;precisao_temporal&quot;: &quot;ano_e_fuso_ausentes&quot;
+}</pre></details><h2 id="limites">Avisos e limitações</h2><div class="box"><ul><li>Datasets: USER é apenas o nome do usuário informado; UID/GID e grupos não foram fornecidos.</li><li>journal.log não informa ano/fuso: não é combinado com timestamps ISO como uma cronologia absoluta.</li><li>A coleta é uma foto do momento: processos podem terminar ou ter o PID reaproveitado durante a coleta.</li><li>A análise usa as permissões rwx de dono, grupo e outros; outros controles de acesso do sistema não são considerados.</li><li>A linha de comando mostrada pelo ps não prova qual arquivo foi executado nem o conteúdo de um script.</li><li>Só são reconhecidos executáveis com caminho absoluto e scripts chamados diretamente (ex.: bash /opt/x.sh); bash -c e caminhos relativos não são resolvidos.</li><li>mtime é a data da última modificação, não da criação, e não prova alteração maliciosa. O hash identifica os arquivos analisados, não quem os produziu.</li><li>Nenhuma regra demonstra exploração. Ausência de achados não demonstra segurança.</li></ul></div><h2>Artefatos analisados</h2><p>Hashes identificam os bytes analisados; não autenticam a origem da coleta.</p><pre>processes.csv
+SHA-256 421b37b2d8f72fddc2df037febd8f646a89a1ae0dbd72e9f9a6a89e9ef4359ba
+547 bytes</pre><pre>permissions.csv
+SHA-256 8dc85d2406f995a52ab21cf28a9c5cf726b46d7011d9ee8bdd08acec6798c15d
+500 bytes</pre><pre>services.txt
+SHA-256 9bfbfef4332589a8874b1ba53bacedfb304c7a6f461219b17370efb51e02a132
+261 bytes</pre><pre>journal.log
+SHA-256 a814cb31f7be232f1aa7d5acd09eec361acb45eec9c672ba5054dbcb3134fba8
+433 bytes</pre><footer class="small">Regras locais e determinísticas. Nenhum modelo de linguagem é chamado durante a execução.</footer></main></body></html>

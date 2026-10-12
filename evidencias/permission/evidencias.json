@@ -1,0 +1,710 @@
+{
+  "versao_formato": "1.0",
+  "ferramenta": {
+    "nome": "Endpoint Investigator",
+    "versao": "1.0.0"
+  },
+  "analisado_em": "2026-09-29T18:57:47+00:00",
+  "tipo_coleta": "dataset",
+  "fontes": [
+    {
+      "arquivo": "processes.csv",
+      "sha256": "421b37b2d8f72fddc2df037febd8f646a89a1ae0dbd72e9f9a6a89e9ef4359ba",
+      "bytes": 547
+    },
+    {
+      "arquivo": "permissions.csv",
+      "sha256": "8dc85d2406f995a52ab21cf28a9c5cf726b46d7011d9ee8bdd08acec6798c15d",
+      "bytes": 500
+    },
+    {
+      "arquivo": "services.txt",
+      "sha256": "9bfbfef4332589a8874b1ba53bacedfb304c7a6f461219b17370efb51e02a132",
+      "bytes": 261
+    },
+    {
+      "arquivo": "journal.log",
+      "sha256": "a814cb31f7be232f1aa7d5acd09eec361acb45eec9c672ba5054dbcb3134fba8",
+      "bytes": 433
+    }
+  ],
+  "evidencias": [
+    {
+      "id": "P0001",
+      "tipo": "processo",
+      "origem": {
+        "arquivo": "processes.csv",
+        "linha": 2
+      },
+      "bruto": "2026-09-14T09:00:00+00:00,1,0,root,Ss,/sbin/init",
+      "dados": {
+        "timestamp": "2026-09-14T09:00:00+00:00",
+        "pid": 1,
+        "ppid": 0,
+        "user": "root",
+        "stat": "Ss",
+        "cmd": "/sbin/init",
+        "argv": [
+          "/sbin/init"
+        ]
+      }
+    },
+    {
+      "id": "P0002",
+      "tipo": "processo",
+      "origem": {
+        "arquivo": "processes.csv",
+        "linha": 3
+      },
+      "bruto": "2026-09-14T09:00:02+00:00,612,1,root,Ss,/usr/sbin/sshd -D",
+      "dados": {
+        "timestamp": "2026-09-14T09:00:02+00:00",
+        "pid": 612,
+        "ppid": 1,
+        "user": "root",
+        "stat": "Ss",
+        "cmd": "/usr/sbin/sshd -D",
+        "argv": [
+          "/usr/sbin/sshd",
+          "-D"
+        ]
+      }
+    },
+    {
+      "id": "P0003",
+      "tipo": "processo",
+      "origem": {
+        "arquivo": "processes.csv",
+        "linha": 4
+      },
+      "bruto": "2026-09-14T09:00:04+00:00,701,1,root,Ss,/usr/sbin/cron -f",
+      "dados": {
+        "timestamp": "2026-09-14T09:00:04+00:00",
+        "pid": 701,
+        "ppid": 1,
+        "user": "root",
+        "stat": "Ss",
+        "cmd": "/usr/sbin/cron -f",
+        "argv": [
+          "/usr/sbin/cron",
+          "-f"
+        ]
+      }
+    },
+    {
+      "id": "P0004",
+      "tipo": "processo",
+      "origem": {
+        "arquivo": "processes.csv",
+        "linha": 5
+      },
+      "bruto": "2026-09-14T09:00:06+00:00,733,1,www-data,S,/usr/sbin/apache2 -k start",
+      "dados": {
+        "timestamp": "2026-09-14T09:00:06+00:00",
+        "pid": 733,
+        "ppid": 1,
+        "user": "www-data",
+        "stat": "S",
+        "cmd": "/usr/sbin/apache2 -k start",
+        "argv": [
+          "/usr/sbin/apache2",
+          "-k",
+          "start"
+        ]
+      }
+    },
+    {
+      "id": "P0005",
+      "tipo": "processo",
+      "origem": {
+        "arquivo": "processes.csv",
+        "linha": 6
+      },
+      "bruto": "2026-09-14T09:00:08+00:00,744,733,www-data,S,/usr/sbin/apache2 -k start",
+      "dados": {
+        "timestamp": "2026-09-14T09:00:08+00:00",
+        "pid": 744,
+        "ppid": 733,
+        "user": "www-data",
+        "stat": "S",
+        "cmd": "/usr/sbin/apache2 -k start",
+        "argv": [
+          "/usr/sbin/apache2",
+          "-k",
+          "start"
+        ]
+      }
+    },
+    {
+      "id": "P0006",
+      "tipo": "processo",
+      "origem": {
+        "arquivo": "processes.csv",
+        "linha": 7
+      },
+      "bruto": "2026-09-14T09:00:10+00:00,1204,612,aluno,Ss,sshd: aluno@pts/0",
+      "dados": {
+        "timestamp": "2026-09-14T09:00:10+00:00",
+        "pid": 1204,
+        "ppid": 612,
+        "user": "aluno",
+        "stat": "Ss",
+        "cmd": "sshd: aluno@pts/0",
+        "argv": [
+          "sshd:",
+          "aluno@pts/0"
+        ]
+      }
+    },
+    {
+      "id": "P0007",
+      "tipo": "processo",
+      "origem": {
+        "arquivo": "processes.csv",
+        "linha": 8
+      },
+      "bruto": "2026-09-14T09:00:12+00:00,1212,1204,aluno,S,/bin/bash",
+      "dados": {
+        "timestamp": "2026-09-14T09:00:12+00:00",
+        "pid": 1212,
+        "ppid": 1204,
+        "user": "aluno",
+        "stat": "S",
+        "cmd": "/bin/bash",
+        "argv": [
+          "/bin/bash"
+        ]
+      }
+    },
+    {
+      "id": "P0008",
+      "tipo": "processo",
+      "origem": {
+        "arquivo": "processes.csv",
+        "linha": 9
+      },
+      "bruto": "2026-09-14T09:00:14+00:00,1234,1212,aluno,S,/usr/bin/python3 /home/aluno/check.py",
+      "dados": {
+        "timestamp": "2026-09-14T09:00:14+00:00",
+        "pid": 1234,
+        "ppid": 1212,
+        "user": "aluno",
+        "stat": "S",
+        "cmd": "/usr/bin/python3 /home/aluno/check.py",
+        "argv": [
+          "/usr/bin/python3",
+          "/home/aluno/check.py"
+        ]
+      }
+    },
+    {
+      "id": "A0001",
+      "tipo": "permissao",
+      "origem": {
+        "arquivo": "permissions.csv",
+        "linha": 2
+      },
+      "bruto": "/opt/app,directory,root,root,0755,2026-09-14T09:00:00+00:00",
+      "dados": {
+        "path": "/opt/app",
+        "type": "directory",
+        "owner": "root",
+        "group": "root",
+        "mode": "0755",
+        "mtime": "2026-09-14T09:00:00+00:00"
+      }
+    },
+    {
+      "id": "A0002",
+      "tipo": "permissao",
+      "origem": {
+        "arquivo": "permissions.csv",
+        "linha": 3
+      },
+      "bruto": "/opt/app/check.py,file,root,root,0755,2026-09-13T08:59:00+00:00",
+      "dados": {
+        "path": "/opt/app/check.py",
+        "type": "file",
+        "owner": "root",
+        "group": "root",
+        "mode": "0755",
+        "mtime": "2026-09-13T08:59:00+00:00"
+      }
+    },
+    {
+      "id": "A0003",
+      "tipo": "permissao",
+      "origem": {
+        "arquivo": "permissions.csv",
+        "linha": 4
+      },
+      "bruto": "/etc/shadow,file,root,shadow,0640,2026-09-12T08:58:00+00:00",
+      "dados": {
+        "path": "/etc/shadow",
+        "type": "file",
+        "owner": "root",
+        "group": "shadow",
+        "mode": "0640",
+        "mtime": "2026-09-12T08:58:00+00:00"
+      }
+    },
+    {
+      "id": "A0004",
+      "tipo": "permissao",
+      "origem": {
+        "arquivo": "permissions.csv",
+        "linha": 5
+      },
+      "bruto": "/usr/local/bin/report-sync,file,root,root,0755,2026-09-11T08:57:00+00:00",
+      "dados": {
+        "path": "/usr/local/bin/report-sync",
+        "type": "file",
+        "owner": "root",
+        "group": "root",
+        "mode": "0755",
+        "mtime": "2026-09-11T08:57:00+00:00"
+      }
+    },
+    {
+      "id": "A0005",
+      "tipo": "permissao",
+      "origem": {
+        "arquivo": "permissions.csv",
+        "linha": 6
+      },
+      "bruto": "/home/aluno/check.py,file,aluno,aluno,0755,2026-09-10T08:56:00+00:00",
+      "dados": {
+        "path": "/home/aluno/check.py",
+        "type": "file",
+        "owner": "aluno",
+        "group": "aluno",
+        "mode": "0755",
+        "mtime": "2026-09-10T08:56:00+00:00"
+      }
+    },
+    {
+      "id": "A0006",
+      "tipo": "permissao",
+      "origem": {
+        "arquivo": "permissions.csv",
+        "linha": 7
+      },
+      "bruto": "/opt/reports/report.sh,file,root,root,0777,2026-09-12T09:00:00+00:00",
+      "dados": {
+        "path": "/opt/reports/report.sh",
+        "type": "file",
+        "owner": "root",
+        "group": "root",
+        "mode": "0777",
+        "mtime": "2026-09-12T09:00:00+00:00"
+      }
+    },
+    {
+      "id": "A0007",
+      "tipo": "permissao",
+      "origem": {
+        "arquivo": "permissions.csv",
+        "linha": 8
+      },
+      "bruto": "/opt/reports,directory,root,root,0755,2026-09-11T09:00:00+00:00",
+      "dados": {
+        "path": "/opt/reports",
+        "type": "directory",
+        "owner": "root",
+        "group": "root",
+        "mode": "0755",
+        "mtime": "2026-09-11T09:00:00+00:00"
+      }
+    },
+    {
+      "id": "S0001",
+      "tipo": "servico",
+      "origem": {
+        "arquivo": "services.txt",
+        "linha": 2
+      },
+      "bruto": "ssh.service                 running  root      /usr/sbin/sshd -D",
+      "dados": {
+        "unit": "ssh.service",
+        "active": "running",
+        "user": "root",
+        "execstart": "/usr/sbin/sshd -D",
+        "argv": [
+          "/usr/sbin/sshd",
+          "-D"
+        ]
+      }
+    },
+    {
+      "id": "S0002",
+      "tipo": "servico",
+      "origem": {
+        "arquivo": "services.txt",
+        "linha": 3
+      },
+      "bruto": "apache2.service             running  root      /usr/sbin/apachectl start",
+      "dados": {
+        "unit": "apache2.service",
+        "active": "running",
+        "user": "root",
+        "execstart": "/usr/sbin/apachectl start",
+        "argv": [
+          "/usr/sbin/apachectl",
+          "start"
+        ]
+      }
+    },
+    {
+      "id": "S0003",
+      "tipo": "servico",
+      "origem": {
+        "arquivo": "services.txt",
+        "linha": 4
+      },
+      "bruto": "cron.service                running  root      /usr/sbin/cron -f",
+      "dados": {
+        "unit": "cron.service",
+        "active": "running",
+        "user": "root",
+        "execstart": "/usr/sbin/cron -f",
+        "argv": [
+          "/usr/sbin/cron",
+          "-f"
+        ]
+      }
+    },
+    {
+      "id": "L0001",
+      "tipo": "log",
+      "origem": {
+        "arquivo": "journal.log",
+        "linha": 1
+      },
+      "bruto": "Sep 14 09:00:00 srv-app-01 systemd[1]: Started ssh.service - OpenBSD Secure Shell server.",
+      "dados": {
+        "mensagem": "Started ssh.service - OpenBSD Secure Shell server.",
+        "timestamp": "Sep 14 09:00:00",
+        "pid": 1,
+        "tag": "systemd",
+        "host": "srv-app-01",
+        "precisao_temporal": "ano_e_fuso_ausentes"
+      }
+    },
+    {
+      "id": "L0002",
+      "tipo": "log",
+      "origem": {
+        "arquivo": "journal.log",
+        "linha": 2
+      },
+      "bruto": "Sep 14 09:00:02 srv-app-01 systemd[1]: Started apache2.service - The Apache HTTP Server.",
+      "dados": {
+        "mensagem": "Started apache2.service - The Apache HTTP Server.",
+        "timestamp": "Sep 14 09:00:02",
+        "pid": 1,
+        "tag": "systemd",
+        "host": "srv-app-01",
+        "precisao_temporal": "ano_e_fuso_ausentes"
+      }
+    },
+    {
+      "id": "L0003",
+      "tipo": "log",
+      "origem": {
+        "arquivo": "journal.log",
+        "linha": 3
+      },
+      "bruto": "Sep 14 09:00:08 srv-app-01 sshd[1204]: Accepted publickey for aluno from 10.20.30.44 port 51518 ssh2",
+      "dados": {
+        "mensagem": "Accepted publickey for aluno from 10.20.30.44 port 51518 ssh2",
+        "timestamp": "Sep 14 09:00:08",
+        "pid": 1204,
+        "tag": "sshd",
+        "host": "srv-app-01",
+        "precisao_temporal": "ano_e_fuso_ausentes"
+      }
+    },
+    {
+      "id": "L0004",
+      "tipo": "log",
+      "origem": {
+        "arquivo": "journal.log",
+        "linha": 4
+      },
+      "bruto": "Sep 14 09:00:10 srv-app-01 systemd-logind[640]: New session 7 of user aluno.",
+      "dados": {
+        "mensagem": "New session 7 of user aluno.",
+        "timestamp": "Sep 14 09:00:10",
+        "pid": 640,
+        "tag": "systemd-logind",
+        "host": "srv-app-01",
+        "precisao_temporal": "ano_e_fuso_ausentes"
+      }
+    },
+    {
+      "id": "L0005",
+      "tipo": "log",
+      "origem": {
+        "arquivo": "journal.log",
+        "linha": 5
+      },
+      "bruto": "Sep 14 09:00:15 srv-app-01 python3[1234]: routine check completed status=OK",
+      "dados": {
+        "mensagem": "routine check completed status=OK",
+        "timestamp": "Sep 14 09:00:15",
+        "pid": 1234,
+        "tag": "python3",
+        "host": "srv-app-01",
+        "precisao_temporal": "ano_e_fuso_ausentes"
+      }
+    }
+  ],
+  "relacoes": [
+    {
+      "id": "C0001",
+      "tipo": "processo_pai",
+      "de": "P0002",
+      "para": "P0001",
+      "metodo": "PPID do filho = PID do pai no snapshot",
+      "confianca": "moderada",
+      "limitacao": "Não demonstra qual identidade foi usada no instante de criação."
+    },
+    {
+      "id": "C0002",
+      "tipo": "processo_pai",
+      "de": "P0003",
+      "para": "P0001",
+      "metodo": "PPID do filho = PID do pai no snapshot",
+      "confianca": "moderada",
+      "limitacao": "Não demonstra qual identidade foi usada no instante de criação."
+    },
+    {
+      "id": "C0003",
+      "tipo": "processo_pai",
+      "de": "P0004",
+      "para": "P0001",
+      "metodo": "PPID do filho = PID do pai no snapshot",
+      "confianca": "moderada",
+      "limitacao": "Não demonstra qual identidade foi usada no instante de criação."
+    },
+    {
+      "id": "C0004",
+      "tipo": "processo_pai",
+      "de": "P0005",
+      "para": "P0004",
+      "metodo": "PPID do filho = PID do pai no snapshot",
+      "confianca": "moderada",
+      "limitacao": "Não demonstra qual identidade foi usada no instante de criação."
+    },
+    {
+      "id": "C0005",
+      "tipo": "processo_pai",
+      "de": "P0006",
+      "para": "P0002",
+      "metodo": "PPID do filho = PID do pai no snapshot",
+      "confianca": "moderada",
+      "limitacao": "Não demonstra qual identidade foi usada no instante de criação."
+    },
+    {
+      "id": "C0006",
+      "tipo": "processo_pai",
+      "de": "P0007",
+      "para": "P0006",
+      "metodo": "PPID do filho = PID do pai no snapshot",
+      "confianca": "moderada",
+      "limitacao": "Não demonstra qual identidade foi usada no instante de criação."
+    },
+    {
+      "id": "C0007",
+      "tipo": "processo_pai",
+      "de": "P0008",
+      "para": "P0007",
+      "metodo": "PPID do filho = PID do pai no snapshot",
+      "confianca": "moderada",
+      "limitacao": "Não demonstra qual identidade foi usada no instante de criação."
+    },
+    {
+      "id": "C0008",
+      "tipo": "processo_codigo",
+      "de": "P0008",
+      "para": "A0005",
+      "metodo": "Caminho absoluto em posição de executável/script",
+      "confianca": "moderada",
+      "limitacao": "O conteúdo do arquivo não foi observado durante a execução."
+    },
+    {
+      "id": "C0009",
+      "tipo": "servico_processo",
+      "de": "S0001",
+      "para": "P0002",
+      "metodo": "argv completo e usuário iguais; associação candidata",
+      "confianca": "moderada",
+      "limitacao": "Associação atual não autentica eventos históricos; argv idêntico pode ocorrer em instâncias distintas."
+    },
+    {
+      "id": "C0010",
+      "tipo": "servico_log",
+      "de": "S0001",
+      "para": "L0001",
+      "metodo": "Unidade explícita ou tag correspondente ao nome completo do serviço",
+      "confianca": "moderada",
+      "limitacao": "Tag textual pode ser falsificada; logs podem estar incompletos."
+    },
+    {
+      "id": "C0011",
+      "tipo": "servico_log",
+      "de": "S0002",
+      "para": "L0002",
+      "metodo": "Unidade explícita ou tag correspondente ao nome completo do serviço",
+      "confianca": "moderada",
+      "limitacao": "Tag textual pode ser falsificada; logs podem estar incompletos."
+    },
+    {
+      "id": "C0012",
+      "tipo": "servico_processo",
+      "de": "S0003",
+      "para": "P0003",
+      "metodo": "argv completo e usuário iguais; associação candidata",
+      "confianca": "moderada",
+      "limitacao": "Associação atual não autentica eventos históricos; argv idêntico pode ocorrer em instâncias distintas."
+    },
+    {
+      "id": "C0013",
+      "tipo": "processo_log",
+      "de": "P0001",
+      "para": "L0001",
+      "metodo": "PID numérico comum",
+      "confianca": "baixa",
+      "limitacao": "O PID pode ter sido reaproveitado por outro processo depois do evento registrado."
+    },
+    {
+      "id": "C0014",
+      "tipo": "processo_log",
+      "de": "P0001",
+      "para": "L0002",
+      "metodo": "PID numérico comum",
+      "confianca": "baixa",
+      "limitacao": "O PID pode ter sido reaproveitado por outro processo depois do evento registrado."
+    },
+    {
+      "id": "C0015",
+      "tipo": "processo_log",
+      "de": "P0006",
+      "para": "L0003",
+      "metodo": "PID numérico comum",
+      "confianca": "baixa",
+      "limitacao": "O PID pode ter sido reaproveitado por outro processo depois do evento registrado."
+    },
+    {
+      "id": "C0016",
+      "tipo": "processo_log",
+      "de": "P0008",
+      "para": "L0005",
+      "metodo": "PID numérico comum",
+      "confianca": "baixa",
+      "limitacao": "O PID pode ter sido reaproveitado por outro processo depois do evento registrado."
+    }
+  ],
+  "contextos_de_servicos": [
+    {
+      "servico": "S0001",
+      "processos_candidatos": [
+        "P0002"
+      ],
+      "alvos_de_codigo": [
+        "/usr/sbin/sshd"
+      ],
+      "alvos_sem_metadados": [
+        "/usr/sbin/sshd"
+      ],
+      "eventos_na_ordem_da_fonte": [
+        "L0001"
+      ],
+      "nota": "Lista de eventos da fonte; não estabelece causalidade nem uma cronologia absoluta."
+    },
+    {
+      "servico": "S0002",
+      "processos_candidatos": [],
+      "alvos_de_codigo": [
+        "/usr/sbin/apachectl"
+      ],
+      "alvos_sem_metadados": [
+        "/usr/sbin/apachectl"
+      ],
+      "eventos_na_ordem_da_fonte": [
+        "L0002"
+      ],
+      "nota": "Lista de eventos da fonte; não estabelece causalidade nem uma cronologia absoluta."
+    },
+    {
+      "servico": "S0003",
+      "processos_candidatos": [
+        "P0003"
+      ],
+      "alvos_de_codigo": [
+        "/usr/sbin/cron"
+      ],
+      "alvos_sem_metadados": [
+        "/usr/sbin/cron"
+      ],
+      "eventos_na_ordem_da_fonte": [],
+      "nota": "Lista de eventos da fonte; não estabelece causalidade nem uma cronologia absoluta."
+    }
+  ],
+  "achados": [
+    {
+      "id": "F0001",
+      "regra": "R03",
+      "titulo": "Arquivo com escrita para outros: /opt/reports/report.sh",
+      "categoria": "risco",
+      "prioridade": "media",
+      "evidencias": [
+        "A0006"
+      ],
+      "relacoes": [],
+      "observado": [
+        "/opt/reports/report.sh: proprietário root, grupo root, modo 0777."
+      ],
+      "interpretacao": "O modo concede escrita a outros; nenhuma relação com execução privilegiada foi estabelecida.",
+      "hipotese": "Pode ser compartilhamento intencional ou uma configuração inadequada.",
+      "evidencias_ausentes": [
+        "Finalidade do arquivo e quem deveria poder alterá-lo.",
+        "Serviço/processo que usa o arquivo e com qual usuário."
+      ],
+      "proximos_passos": [
+        "Identificar quem usa o arquivo e quais permissões são necessárias."
+      ],
+      "exploracao_comprovada": false
+    }
+  ],
+  "resumo": {
+    "evidencias": 23,
+    "relacoes": 16,
+    "achados": 1,
+    "por_prioridade": {
+      "alta": 0,
+      "media": 1,
+      "baixa": 0,
+      "informativa": 0
+    },
+    "por_tipo_de_evidencia": {
+      "processo": 8,
+      "permissao": 7,
+      "servico": 3,
+      "log": 5
+    },
+    "conclusao": "As regras não determinam ocorrência de exploração; os achados indicam verificações a realizar."
+  },
+  "avisos": [
+    "Datasets: USER é apenas o nome do usuário informado; UID/GID e grupos não foram fornecidos.",
+    "journal.log não informa ano/fuso: não é combinado com timestamps ISO como uma cronologia absoluta."
+  ],
+  "limitacoes": [
+    "A coleta é uma foto do momento: processos podem terminar ou ter o PID reaproveitado durante a coleta.",
+    "A análise usa as permissões rwx de dono, grupo e outros; outros controles de acesso do sistema não são considerados.",
+    "A linha de comando mostrada pelo ps não prova qual arquivo foi executado nem o conteúdo de um script.",
+    "Só são reconhecidos executáveis com caminho absoluto e scripts chamados diretamente (ex.: bash /opt/x.sh); bash -c e caminhos relativos não são resolvidos.",
+    "mtime é a data da última modificação, não da criação, e não prova alteração maliciosa. O hash identifica os arquivos analisados, não quem os produziu.",
+    "Nenhuma regra demonstra exploração. Ausência de achados não demonstra segurança."
+  ]
+}
